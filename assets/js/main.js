@@ -1,6 +1,6 @@
 document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
 
-const MODALS = ['modal-sql','modal-python','modal-powerbi','modal-ml'];
+const MODALS = ['modal-sql','modal-python','modal-powerbi'];
 let currentIdx = 0;
 
 function openModal(index) {
