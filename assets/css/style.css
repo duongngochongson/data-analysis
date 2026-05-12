@@ -110,6 +110,7 @@ body {
 }
 .btn:hover { transform: translateY(-1px); opacity: .92; }
 .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); }
+.btn-ghost-dark { background: transparent; color: var(--ink); border: 1px solid rgba(0,0,0,0.15); margin-left: 8px; }
 .tile-hero .btn { background: #fff; color: var(--ink); }
 .tile-contact .btn { background: var(--ink); color: #fff; }
 
