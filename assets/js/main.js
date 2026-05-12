@@ -18,10 +18,12 @@ function updateNavState(dlg) {
   dlg.querySelectorAll('.mnav-dot').forEach((d,i) => d.classList.toggle('active', i === currentIdx));
 }
 
-document.querySelectorAll('[data-modal]').forEach(tile => {
-  const idx = MODALS.indexOf(tile.getAttribute('data-modal'));
-  tile.addEventListener('click', () => openModal(idx));
-  tile.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); openModal(idx); } });
+document.querySelectorAll('[data-modal-open]').forEach(btn => {
+  const idx = MODALS.indexOf(btn.getAttribute('data-modal-open'));
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    openModal(idx);
+  });
 });
 
 document.querySelectorAll('.modal').forEach(dlg => {
