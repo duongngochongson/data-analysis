@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hong Son — Data Analyst Portfolio</title>
+  <title>duongngochongson — Data Analyst Portfolio</title>
   <meta name="description" content="Data analyst portfolio: SQL, Python, Power BI, Machine Learning projects by Duong Ngoc Hong Son." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,77 +13,129 @@
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <a href="#top" class="brand">HS.</a>
-      <nav>
-        <a href="#sql">SQL</a>
-        <a href="#python">Python</a>
-        <a href="#powerbi">Power BI</a>
-        <a href="#ml">ML</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <a href="#top" class="brand">duongngochongson</a>
     </div>
   </header>
 
   <main id="top">
     <section class="bento">
-      <article class="tile tile-hero">
-        <div class="hero-content">
-          <p class="eyebrow">Data Analyst · Portfolio</p>
-          <h1>Turning data<br/>into decisions.</h1>
-          <p class="lede">Hi, I'm <strong>Duong Ngoc Hong Son</strong>. I build dashboards, segment customers, and explore behavior with SQL, Python &amp; Power BI.</p>
-          <div class="hero-cta">
-            <a href="#sql" class="btn">View work</a>
-            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+
+      <article class="tile tile-project tile-sql" id="sql" data-modal="modal-sql" tabindex="0" role="button" aria-label="Open SQL project">
+        <div class="tile-head">
+          <span class="tile-tag">SQL · BigQuery</span>
+          <h2>eCommerce User Behavior Exploration</h2>
+        </div>
+        <div class="tile-body">
+          <div class="summary-block">
+            <span class="summary-label">Tool</span>
+            <p>BigQuery and the Google Analytics public sample dataset.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Approach</span>
+            <p>Eight analytical queries using <code>UNNEST</code> on nested hits and product fields, CTEs and window functions to slice sessions, revenue and the purchase funnel.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Insight</span>
+            <p>March 2017 hit the highest purchase rate at 12.64%; Google dominated traffic volume while YouTube and Facebook carried the highest bounce rates.</p>
           </div>
         </div>
+        <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
       </article>
 
-      <article class="tile tile-sql" id="sql" data-modal="modal-sql" tabindex="0" role="button" aria-label="Open SQL project">
-        <div class="tile-tag">SQL · BigQuery</div>
-        <h2>eCommerce User Behavior</h2>
-        <p>8 analytical queries on Google Analytics public dataset — sessions, bounce rate, revenue, cohort funnel.</p>
-        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
+      <article class="tile tile-project tile-python" id="python" data-modal="modal-python" tabindex="0" role="button" aria-label="Open Python project">
+        <div class="tile-head">
+          <span class="tile-tag">Python · Pandas</span>
+          <h2>Retailer RFM Segmentation</h2>
+        </div>
+        <div class="tile-body">
+          <div class="summary-block">
+            <span class="summary-label">Tool</span>
+            <p>Google Colab with Pandas, NumPy, Seaborn, Matplotlib and Squarify.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Approach</span>
+            <p>Clean SuperStore transactions, score Recency / Frequency / Monetary with <code>pd.qcut</code> quintiles, map customers to seven actionable segments and visualize the distribution.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Insight</span>
+            <p>Champions are 19.2% of customers, Hibernating 15.9%. SuperStore should prioritize Recency and Frequency over Monetary to convert Potential Loyalists.</p>
+          </div>
+        </div>
+        <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
       </article>
 
-      <article class="tile tile-python" id="python" data-modal="modal-python" tabindex="0" role="button" aria-label="Open Python project">
-        <div class="tile-tag">Python · Pandas</div>
-        <h2>Retailer RFM Segmentation</h2>
-        <p>Cleaned SuperStore transactions, scored customers on Recency, Frequency, Monetary, mapped 7 actionable segments.</p>
-        <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="RFM treemap of customer segments" loading="lazy" />
-        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
+      <article class="tile tile-project tile-powerbi" id="powerbi" data-modal="modal-powerbi" tabindex="0" role="button" aria-label="Open Power BI project">
+        <div class="tile-head">
+          <span class="tile-tag">Power BI · DAX</span>
+          <h2>Purchasing Department Performance</h2>
+        </div>
+        <div class="tile-body">
+          <div class="summary-block">
+            <span class="summary-label">Tool</span>
+            <p>Power BI, Power Query, DAX, sourcing AdventureWorks data from BigQuery.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Approach</span>
+            <p>Apply design thinking to pick the North Star (% No-error Orders), then build an Overview dashboard plus a Vendor Detail dashboard to support purchasing decisions.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Insight</span>
+            <p>In the Pedals subcategory, 76% of orders were error-free. Vendor 1586 leads reliability at 78.72%; Vendor 1506 needs freight-cost negotiation.</p>
+          </div>
+        </div>
+        <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
       </article>
 
-      <article class="tile tile-powerbi" id="powerbi" data-modal="modal-powerbi" tabindex="0" role="button" aria-label="Open Power BI project">
-        <div class="tile-tag">Power BI · DAX</div>
-        <h2>Purchasing Vendor Performance</h2>
-        <p>Design-thinking dashboard for AdventureWorks — vendor reliability, costs, and error-free order rate.</p>
-        <img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Power BI vendor overview dashboard" loading="lazy" />
-        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
-      </article>
-
-      <article class="tile tile-ml" id="ml" data-modal="modal-ml" tabindex="0" role="button" aria-label="Open Machine Learning project">
-        <div class="tile-tag">ML · Python</div>
-        <h2>Customer Churn &amp; Segmentation</h2>
-        <p>Customer-level analytics combining churn signals with RFM segmentation for retention campaigns.</p>
-        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
+      <article class="tile tile-project tile-ml" id="ml" data-modal="modal-ml" tabindex="0" role="button" aria-label="Open Machine Learning project">
+        <div class="tile-head">
+          <span class="tile-tag">Machine Learning · Python</span>
+          <h2>Customer Churn &amp; Segmentation</h2>
+        </div>
+        <div class="tile-body">
+          <div class="summary-block">
+            <span class="summary-label">Tool</span>
+            <p>Python with Pandas for segmentation; scikit-learn planned for the predictive churn model.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Approach</span>
+            <p>Use RFM scoring as the foundation, then layer churn signals (recency thresholds, tenure, drop-off) to flag at-risk customers for targeted retention campaigns.</p>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label">Insight</span>
+            <p>About-to-Sleep and At-Risk segments make up a sizeable share of customers — concentrating retention spend here yields better ROI than blanket discounts.</p>
+          </div>
+        </div>
+        <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
       </article>
 
       <article class="tile tile-about" id="about">
-        <div class="tile-tag">About</div>
+        <span class="tile-tag">About</span>
         <h2>Toolbelt</h2>
         <ul class="chips">
-          <li>SQL</li><li>BigQuery</li><li>Python</li><li>Pandas</li><li>NumPy</li>
-          <li>Matplotlib</li><li>Seaborn</li><li>Power BI</li><li>DAX</li><li>Power Query</li>
-          <li>Design Thinking</li><li>RFM</li>
+          <li>Excel</li>
+          <li>SQL</li>
+          <li>Power BI</li>
+          <li>Python</li>
+          <li>Machine Learning</li>
         </ul>
       </article>
 
       <article class="tile tile-contact" id="contact">
-        <div class="tile-tag">Contact</div>
+        <span class="tile-tag">Contact</span>
         <h2>Let's talk.</h2>
-        <p>Open to data analyst roles &amp; freelance projects.</p>
-        <a class="btn" href="https://github.com/duongngochongson" target="_blank" rel="noopener">GitHub</a>
+        <div class="social-row">
+          <a class="social-btn" href="https://github.com/duongngochongson" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+          <a class="social-btn" href="https://www.linkedin.com/in/duongngochongson/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a class="social-btn" href="mailto:duongngochongson@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+        </div>
       </article>
+
     </section>
   </main>
 
@@ -93,26 +145,54 @@
     <div class="modal-inner">
       <span class="eyebrow">SQL · BigQuery</span>
       <h2>SQL eCommerce User Behavior Exploration</h2>
-      <p class="lede">Analyzing user engagement and revenue trends on Google Analytics public dataset.</p>
+      <p class="lede">The project aims to provide insights on user engagement and revenue trends for data analysts and eCommerce professionals.</p>
 
-      <h3>Approach</h3>
-      <p>BigQuery public GA sample. Heavy use of <code>UNNEST</code> on nested <code>hits</code> &amp; <code>product</code>, CTEs and window functions across 8 queries.</p>
+      <h3>Overall</h3>
+      <p><strong>Approach &amp; Platform:</strong> Explore a public dataset of Google Analytics in BigQuery.</p>
+      <p><strong>Main Techniques:</strong> Utilize window functions, nested queries (CTEs), and data unnesting techniques.</p>
+      <p><strong>Result:</strong> Extract key insights, such as engagement rates and revenue performance over time.</p>
+      <p><strong>Details:</strong> This is a Google Analytics public dataset within Google BigQuery. It contains information about an eCommerce company, with user sessions collected.</p>
 
-      <h3>Key questions answered</h3>
-      <ul>
-        <li>Visits, pageviews, transactions for Jan–Mar 2017</li>
-        <li>Bounce rate per traffic source (Jul 2017)</li>
-        <li>Revenue by source — weekly &amp; monthly (Jun 2017)</li>
-        <li>Avg pageviews: purchasers vs non-purchasers</li>
-        <li>Avg transactions / revenue per user</li>
-        <li>Cross-sell from "YouTube Men's Vintage Henley"</li>
-        <li>Cohort funnel: view → cart → purchase</li>
-      </ul>
+      <h3>Query 01 · Total visits, pageviews, transactions (Jan–Mar 2017)</h3>
+      <pre><code>SELECT FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
+       SUM(totals.visits) AS number_of_visit,
+       SUM(totals.pageviews) AS number_of_pageview,
+       SUM(totals.transactions) AS number_of_transaction
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`
+WHERE _table_suffix BETWEEN '0101' AND '0331'
+GROUP BY month;</code></pre>
+      <p>March 2017 had the most transactions, while January 2017 had the highest visits.</p>
 
-      <h3>Highlighted insight</h3>
-      <blockquote>March 2017 had the highest purchase rate (12.64%) and the most transactions; February peaked in add-to-cart engagement.</blockquote>
+      <h3>Query 02 · Bounce rate per traffic source (Jul 2017)</h3>
+      <p>Google had the highest total visits, while YouTube and Facebook had the highest bounce rates (66.7% and 64.3%).</p>
 
-      <p><a class="btn" href="projects/sql-ecommerce/Explore%20Ecommerce%20Dataset.sql" target="_blank" rel="noopener">View .sql file</a> <a class="btn btn-ghost-dark" href="https://github.com/duongngochongson/store/blob/main/projects/sql-ecommerce/Explore%20Ecommerce%20Dataset.sql" target="_blank" rel="noopener">View on GitHub</a></p>
+      <h3>Query 03 · Revenue by traffic source, weekly &amp; monthly (Jun 2017)</h3>
+      <p>Direct traffic dominated, generating ~$97k in monthly revenue, far ahead of Google ($18.7k) and DFA ($8.8k).</p>
+
+      <h3>Query 04 · Avg pageviews: purchasers vs non-purchasers (Jun–Jul 2017)</h3>
+      <p>July 2017 had higher average pageviews per purchase compared to June, and slightly higher non-purchase pageviews too.</p>
+
+      <h3>Query 05 · Avg transactions per purchasing user (Jul 2017)</h3>
+      <p>Purchasing users averaged <strong>4.16</strong> transactions in July 2017.</p>
+
+      <h3>Query 06 · Avg revenue per session for purchasers (Jul 2017)</h3>
+      <p>Average revenue per session reached <strong>$43.86</strong>.</p>
+
+      <h3>Query 07 · Cross-sell from "YouTube Men's Vintage Henley" (Jul 2017)</h3>
+      <p>Customers who bought the Henley also favored Google Sunglasses (20 units), Women's Vintage Hero Tee, and SPF-15 Lip Balm — strong interest in casual wear and Google/YouTube branded accessories.</p>
+
+      <h3>Query 08 · Cohort funnel: view → cart → purchase (Q1 2017)</h3>
+      <table class="data">
+        <thead><tr><th>Month</th><th>Views</th><th>Add-to-cart</th><th>Purchase</th><th>ATC rate</th><th>Purchase rate</th></tr></thead>
+        <tbody>
+          <tr><td>2017-01</td><td>25,787</td><td>7,342</td><td>2,143</td><td>28.47%</td><td>8.31%</td></tr>
+          <tr><td>2017-02</td><td>21,489</td><td>7,360</td><td>2,060</td><td>34.25%</td><td>9.59%</td></tr>
+          <tr><td>2017-03</td><td>23,549</td><td>8,782</td><td>2,977</td><td>37.29%</td><td>12.64%</td></tr>
+        </tbody>
+      </table>
+      <p>March 2017 showed an upward trend with the highest purchase rate, while February peaked in add-to-cart engagement — a sign of improving funnel health quarter-over-quarter.</p>
+
+      <p class="modal-actions"><a class="btn" href="projects/sql-ecommerce/Explore%20Ecommerce%20Dataset.sql" target="_blank" rel="noopener">View .sql file</a></p>
     </div>
   </dialog>
 
@@ -122,17 +202,34 @@
     <div class="modal-inner">
       <span class="eyebrow">Python · Pandas</span>
       <h2>Retailer RFM Segmentation</h2>
-      <p class="lede">Segmenting SuperStore customers by Recency, Frequency, and Monetary value to drive marketing campaigns.</p>
+      <p class="lede">The project aims to analyze the retailer’s customer behavior to enhance marketing strategies for marketing teams.</p>
 
-      <h3>Pipeline</h3>
+      <h3>Overall</h3>
+      <p><strong>Platform:</strong> Google Colab.</p>
+      <p><strong>Main Technique:</strong> Exploratory data analysis (EDA), data transformations, aggregation and grouping.</p>
+      <p><strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib and Squarify.</p>
+      <p><strong>Context:</strong> SuperStore, a global retail company with a large customer base, seeks to segment customers for its marketing campaigns. The Marketing department asked Data Analysis to implement the RFM model.</p>
+      <p><strong>RFM model:</strong> segments customers by three metrics — Recency (how recently a purchase was made), Frequency (how often purchases occur), and Monetary (total spending amount).</p>
+
+      <h3>Data Cleaning</h3>
+      <ul>
+        <li>Drop duplicates.</li>
+        <li>Remove cancelled orders (<code>InvoiceNo</code> starting with <code>C</code>).</li>
+        <li>Drop bad-debt adjustment rows where <code>InvoiceNo</code> is not an integer.</li>
+        <li>Keep only rows with <code>Quantity &gt; 0</code>, <code>UnitPrice &gt; 0</code>, and non-empty <code>CustomerID</code>.</li>
+        <li>Convert <code>InvoiceDate</code> to datetime and extract <code>Date</code>.</li>
+      </ul>
+
+      <h3>RFM Segmentation Pipeline</h3>
       <ol>
-        <li>Pull transactions &amp; segmentation lookup from Google Sheets</li>
-        <li>Clean: drop duplicates, cancelled orders (<code>InvoiceNo</code> starts with C), negative qty/price</li>
-        <li>Score R, F, M with <code>pd.qcut</code> quintiles → 3-digit RFM score</li>
-        <li>Map to 7 named segments &amp; aggregate</li>
-        <li>Visualize with Seaborn &amp; Squarify</li>
+        <li>Compute <code>revenue = quantity × price</code>.</li>
+        <li>Aggregate per customer: <code>max(date)</code>, <code>nunique(invoiceid)</code>, <code>sum(revenue)</code>.</li>
+        <li>Recency = days between 31/12/2011 and last purchase.</li>
+        <li>Score R, F, M from 1–5 using <code>pd.qcut</code> quintiles.</li>
+        <li>Build a 3-digit RFM score and merge with the segmentation lookup.</li>
       </ol>
 
+      <h3>Visualization</h3>
       <div class="gallery">
         <img src="https://github.com/user-attachments/assets/ffee588b-8aa9-4ad2-871e-528c05393576" alt="Average recency by segment" loading="lazy" />
         <img src="https://github.com/user-attachments/assets/9f8a65b2-37fd-4356-82be-7946a4d606b7" alt="Average frequency by segment" loading="lazy" />
@@ -140,10 +237,40 @@
         <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="Percent customers by segment treemap" loading="lazy" />
       </div>
 
-      <h3>Highlighted insight</h3>
-      <blockquote>Champions make up 19.2% of customers; Hibernating 15.9%. SuperStore should prioritize Recency &amp; Frequency over Monetary to convert Potential Loyalists.</blockquote>
+      <h3>Insights &amp; Recommendations</h3>
+      <p>By the end of 2011, SuperStore had a <em>mixed business situation</em>: strong segments (Champions, Loyal, Potential Loyal) alongside weaker ones (Hibernating, About to Sleep, At Risk, Lost). Champions made up 19.2% of customers, Hibernating 15.9%.</p>
+      <p>The skewed averages of R, F, and revenue across segments show a <em>significant gap</em> between strong and weak segments. SuperStore relies heavily on the Champions segment, suggesting issues in converting new customers into loyal ones.</p>
+      <p>Focus on Recency and Frequency rather than Monetary — loyal shoppers tend to buy often at lower amounts throughout the year.</p>
 
-      <p><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
+      <h4>Segment Characteristics</h4>
+      <table class="data">
+        <thead><tr><th>Segment</th><th>Characteristics</th></tr></thead>
+        <tbody>
+          <tr><td>Champions</td><td>Highly engaged and valuable (score: 555, 554, 544, 545, 454, 455, 445)</td></tr>
+          <tr><td>Loyal</td><td>Regular purchases, strong retention (543, 444, 435, 355, 354, 345, 344, 335)</td></tr>
+          <tr><td>Potential Loyalist</td><td>Engaging but not fully committed</td></tr>
+          <tr><td>Hibernating</td><td>Inactive but may return with effort</td></tr>
+          <tr><td>About to Sleep</td><td>Decreasing engagement; needs attention</td></tr>
+          <tr><td>At Risk</td><td>Likely to disengage; require intervention</td></tr>
+          <tr><td>Lost</td><td>No recent activity; may need reactivation</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Recommended Campaigns</h4>
+      <table class="data">
+        <thead><tr><th>Segment</th><th>Campaign</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Champions</td><td>Exclusive Rewards</td><td>Tiered loyalty with discounts, early sale access, gifts.</td></tr>
+          <tr><td>Loyal</td><td>Personalized Communication</td><td>Emails with product recommendations and special-date offers.</td></tr>
+          <tr><td>Potential Loyalist</td><td>Engagement Incentives</td><td>Targeted promotions to encourage repeat purchases.</td></tr>
+          <tr><td>Hibernating</td><td>Re-Engagement</td><td>Email discounts and new-offering highlights.</td></tr>
+          <tr><td>About to Sleep</td><td>Nudge Reminders</td><td>Reminders and small offers to re-engage.</td></tr>
+          <tr><td>At Risk</td><td>Win-Back Offers</td><td>Limited-time discounts or exclusive offers.</td></tr>
+          <tr><td>Lost</td><td>Recovery Campaign</td><td>Significant discounts or free gifts to entice back.</td></tr>
+        </tbody>
+      </table>
+
+      <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
     </div>
   </dialog>
 
@@ -152,23 +279,61 @@
     <button class="modal-close" aria-label="Close">✕</button>
     <div class="modal-inner">
       <span class="eyebrow">Power BI · DAX · Power Query</span>
-      <h2>Purchasing Department Performance</h2>
-      <p class="lede">Operational dashboard for the AdventureWorks purchasing team — vendor reliability and cost optimization.</p>
+      <h2>Purchasing Department Performance Dashboard</h2>
+      <p class="lede">The project aims to visualize overall and in-depth information on the purchasing department for managers and business analysts.</p>
 
-      <h3>Design Thinking → North Star</h3>
-      <p><strong>% No-error Orders</strong> — orders where received quantity equals stockable quantity. Chosen because the purchasing team's goal is to keep production supplied.</p>
+      <h3>Overall</h3>
+      <p><strong>Approach &amp; Platform:</strong> Apply <em>design thinking</em> to identify key metrics, then pull relevant data from BigQuery.</p>
+      <p><strong>Main Techniques:</strong> Clean and transform data in Power Query, build a model, and use DAX for calculations.</p>
+      <p><strong>Context:</strong> AdventureWorks supports OLTP for a fictitious bicycle manufacturer. The purchasing department buys goods, raw materials, and semi-finished products for production. Management expects goods to be sufficient, on-time, and at optimal import prices.</p>
 
-      <h3>Two dashboards</h3>
-      <div class="gallery">
+      <h3>Design Thinking · Step 1: Empathize (5W1H)</h3>
+      <table class="data">
+        <tbody>
+          <tr><th>Who</th><td>Purchasing Manager, accountant.</td></tr>
+          <tr><th>Key stakeholder</th><td>Purchasing Manager.</td></tr>
+          <tr><th>What problem</th><td>Enhances vendor oversight, promotes data-driven decisions, optimizes vendor relationships and costs.</td></tr>
+          <tr><th>When / Where</th><td>During monthly meetings or when managers review alone.</td></tr>
+          <tr><th>Why</th><td>Understand vendor performance and evaluate decisions.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 2: Define POV · North Star</h3>
+      <p><strong>% No-error Orders</strong> — a no-error order is one where received quantity equals stockable quantity. Chosen because the purchasing team’s goal is to keep production supplied.</p>
+
+      <h3>Step 3: Ideate</h3>
+      <p><strong>Layer 0:</strong> % no-error orders, % received, % rejected, % fee.<br/><strong>Layer 1:</strong> breakdowns over time, by ship method, and by sub-category.</p>
+
+      <h3>Data Model</h3>
+      <div class="gallery one-col">
         <img src="https://github.com/user-attachments/assets/018bbf03-71f5-439c-8f31-ad95a0716f28" alt="Power BI data model" loading="lazy" />
-        <img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Vendor overview dashboard" loading="lazy" />
-        <img src="https://github.com/user-attachments/assets/b93e0fe5-e5f6-458b-97a8-5b3db8691e75" alt="Vendor detail dashboard" loading="lazy" />
       </div>
 
-      <h3>Highlighted insight</h3>
-      <blockquote>In the Pedals subcategory, 76% of orders were error-free with avg 8.68% extra fee. Vendor 1586 leads on reliability (78.72%) — prioritize. Vendor 1506 needs freight-cost negotiation.</blockquote>
+      <h3>Visual 1 · Vendor Performance Overview</h3>
+      <div class="gallery one-col">
+        <img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Vendor overview dashboard" loading="lazy" />
+      </div>
+      <p>In the Pedals subcategory (2013–2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across seven vendors. Vendor 1586 leads at 78.72%; Vendor 1506 ranks second at 77.66% but is not among the top for low fees.</p>
 
-      <p><a class="btn" href="projects/Purchasing%20Vendor%20Performance.pbix" target="_blank" rel="noopener">Download .pbix</a></p>
+      <h3>Visual 2 · Vendor Performance Detail</h3>
+      <div class="gallery one-col">
+        <img src="https://github.com/user-attachments/assets/b93e0fe5-e5f6-458b-97a8-5b3db8691e75" alt="Vendor detail dashboard" loading="lazy" />
+      </div>
+      <p>Pedals category fee sits at 9.5% vs 8.68% average. Vendor 1586 should be prioritized; Vendor 1506 negotiations should focus on reducing freight costs.</p>
+
+      <h3>How to Use</h3>
+      <table class="data">
+        <thead><tr><th>Action</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Review Summary</td><td>Scan Overview for error-free orders, total costs, extra fees, active vendors.</td></tr>
+          <tr><td>Analyze Trends</td><td>Use trend charts to spot reliability dips or rising costs.</td></tr>
+          <tr><td>Select Vendor</td><td>Switch to Vendor tab to inspect per-vendor metrics and trends.</td></tr>
+          <tr><td>Examine Details</td><td>Check product-specific pricing, fees, taxes, freight costs.</td></tr>
+          <tr><td>Take Action</td><td>Generate reports and renegotiate contracts based on findings.</td></tr>
+        </tbody>
+      </table>
+
+      <p class="modal-actions"><a class="btn" href="projects/Purchasing%20Vendor%20Performance.pbix" target="_blank" rel="noopener">Download .pbix</a></p>
     </div>
   </dialog>
 
@@ -178,15 +343,36 @@
     <div class="modal-inner">
       <span class="eyebrow">Machine Learning · Python</span>
       <h2>Customer Churn Prediction &amp; Segmentation</h2>
-      <p class="lede">Combines RFM segmentation with churn signals to target retention campaigns at the right customers.</p>
+      <p class="lede">Combine RFM segmentation with churn signals to target retention campaigns at the right customers.</p>
 
-      <h3>Status</h3>
-      <p>This case study currently covers the segmentation foundation. A predictive churn model (logistic regression / gradient boosting on R, F, M and tenure features) is the planned next step.</p>
+      <h3>Overall</h3>
+      <p><strong>Platform:</strong> Google Colab.</p>
+      <p><strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify; scikit-learn for the modeling step.</p>
+      <p><strong>Context:</strong> SuperStore wants to keep loyal customers and re-engage those at risk. The Marketing team needs a way to score every customer for retention priority.</p>
 
-      <h3>Why it matters</h3>
-      <p>Knowing <em>who</em> is at risk lets marketing concentrate budget on customers most likely to respond — rather than spraying discounts across all 'At Risk' segments.</p>
+      <h3>Segmentation Foundation (RFM)</h3>
+      <ol>
+        <li>Clean transactions — drop cancelled orders, negative quantities, missing customer IDs.</li>
+        <li>Compute Recency, Frequency, Monetary per customer.</li>
+        <li>Score each dimension 1–5 with <code>pd.qcut</code> quintiles, build a 3-digit RFM score.</li>
+        <li>Map to seven named segments: Champions, Loyal, Potential Loyalist, Hibernating, About to Sleep, At Risk, Lost.</li>
+      </ol>
 
-      <p><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View segmentation notebook</a></p>
+      <h3>From Segmentation to Churn Prediction</h3>
+      <p>Label customers as churned vs active (no purchase in N days), engineer features from R, F, M, tenure and category mix, then train a classifier (logistic regression baseline → gradient boosting). Output: churn probability per customer, combined with segment label to prioritize retention spend.</p>
+
+      <h3>Visualization</h3>
+      <div class="gallery">
+        <img src="https://github.com/user-attachments/assets/ffee588b-8aa9-4ad2-871e-528c05393576" alt="Average recency by segment" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/9f8a65b2-37fd-4356-82be-7946a4d606b7" alt="Average frequency by segment" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/049d2f51-511d-4758-bac3-5bcc63cfcf9e" alt="Percent revenue by segment" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="Percent customers by segment treemap" loading="lazy" />
+      </div>
+
+      <h3>Why It Matters</h3>
+      <p>About-to-Sleep and At-Risk together are a sizeable share of the base. Knowing <em>who</em> is at risk lets marketing concentrate budget on customers most likely to respond — rather than spraying discounts across every segment label.</p>
+
+      <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View segmentation notebook</a></p>
     </div>
   </dialog>
 
