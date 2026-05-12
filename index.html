@@ -15,63 +15,53 @@
 <main id="top">
   <section class="bento">
 
-    <article class="tile tile-project tile-sql" id="sql" data-modal="modal-sql" tabindex="0" role="button" aria-label="Open SQL project">
+    <article class="tile tile-project tile-sql" id="sql">
       <div class="tile-head">
         <span class="tile-tag">SQL · BigQuery</span>
         <h2>eCommerce User Behavior Exploration</h2>
+        <div class="tile-foot">Read full case</div>
       </div>
       <div class="tile-body">
-        <div class="summary-block"><span class="summary-label">Tool</span><p>BigQuery and the Google Analytics public sample dataset.</p></div>
-        <div class="summary-block"><span class="summary-label">Approach</span><p>Eight analytical queries using <code>UNNEST</code> on nested hits and product fields, CTEs and window functions to slice sessions, revenue and the purchase funnel.</p></div>
-        <div class="summary-block"><span class="summary-label">Insight</span><p>March 2017 hit the highest purchase rate at 12.64%; Google dominated traffic while YouTube and Facebook carried the highest bounce rates.</p></div>
+        <div class="summary-block"><span class="summary-label">⚙️ Tool</span><p>BigQuery + Google Analytics sample dataset.</p></div>
+        <div class="summary-block"><span class="summary-label">🛠️ Approach</span><p>1️⃣ I turned the analysis into 8 focused SQL questions so each query answers one business point.<br>2️⃣ I combined CTEs and <code>UNNEST</code> to cleanly work with nested hits/product data.<br>3️⃣ I read the journey in order: traffic quality first, then revenue trends, then funnel conversion.</p></div>
+        <div class="summary-block"><span class="summary-label">💡 Insight</span><p>1️⃣ March showed the strongest transaction momentum, signaling healthier purchase intent.<br>2️⃣ Google drove volume, but channel quality varied a lot once bounce and conversion were checked.<br>3️⃣ Direct traffic and deeper pageviews were closely tied to stronger revenue outcomes.</p></div>
       </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
     </article>
 
-    <article class="tile tile-project tile-python" id="python" data-modal="modal-python" tabindex="0" role="button" aria-label="Open Python project">
+    <article class="tile tile-project tile-python" id="python">
       <div class="tile-head">
         <span class="tile-tag">Python · Pandas</span>
         <h2>Retailer RFM Segmentation</h2>
+        <div class="tile-foot">Read full case</div>
       </div>
       <div class="tile-body">
-        <div class="summary-block"><span class="summary-label">Tool</span><p>Google Colab with Pandas, NumPy, Seaborn, Matplotlib and Squarify.</p></div>
-        <div class="summary-block"><span class="summary-label">Approach</span><p>Clean SuperStore transactions, score Recency / Frequency / Monetary with <code>pd.qcut</code> quintiles, map customers to seven actionable segments.</p></div>
-        <div class="summary-block"><span class="summary-label">Insight</span><p>Champions are 19.2% of customers, Hibernating 15.9%. Focus on Recency and Frequency over Monetary to convert Potential Loyalists.</p></div>
+        <div class="summary-block"><span class="summary-label">⚙️ Tool</span><p>Python (Pandas, NumPy, Seaborn, Matplotlib, Squarify).</p></div>
+        <div class="summary-block"><span class="summary-label">🛠️ Approach</span><p>1️⃣ I cleaned and standardized raw orders first so the segment logic runs on trustworthy data.<br>2️⃣ I scored Recency, Frequency, and Monetary with quantile ranks, then mapped customers to clear segment labels.<br>3️⃣ I summarized each segment with behavior + revenue views to make campaign planning practical.</p></div>
+        <div class="summary-block"><span class="summary-label">💡 Insight</span><p>1️⃣ Customer value is uneven, so sending one generic campaign to everyone wastes budget.<br>2️⃣ Potential Loyalists are the best growth lever, while At-Risk groups need timely win-back actions.<br>3️⃣ Recency and Frequency are usually the fastest levers for retention impact.</p></div>
       </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
     </article>
 
-    <article class="tile tile-project tile-powerbi" id="powerbi" data-modal="modal-powerbi" tabindex="0" role="button" aria-label="Open Power BI project">
+    <article class="tile tile-project tile-powerbi" id="powerbi">
       <div class="tile-head">
         <span class="tile-tag">Power BI · DAX</span>
         <h2>Purchasing Department Performance</h2>
+        <div class="tile-foot">Read full case</div>
       </div>
       <div class="tile-body">
-        <div class="summary-block"><span class="summary-label">Tool</span><p>Power BI, Power Query, DAX, sourcing AdventureWorks data from BigQuery.</p></div>
-        <div class="summary-block"><span class="summary-label">Approach</span><p>Apply design thinking to define North Star (% No-error Orders), then build an Overview and a Vendor Detail dashboard.</p></div>
-        <div class="summary-block"><span class="summary-label">Insight</span><p>Pedals subcategory: 76% error-free orders. Vendor 1586 leads at 78.72%; Vendor 1506 needs freight-cost negotiation.</p></div>
+        <div class="summary-block"><span class="summary-label">⚙️ Tool</span><p>Power BI + DAX + Power Query.</p></div>
+        <div class="summary-block"><span class="summary-label">🛠️ Approach</span><p>1️⃣ I used design thinking first to pin down user pain points and decision moments.<br>2️⃣ I built a KPI-first structure with an executive overview and vendor drill-down flow.<br>3️⃣ I modeled relationships and DAX measures to make comparisons fast and reliable in monthly reviews.</p></div>
+        <div class="summary-block"><span class="summary-label">💡 Insight</span><p>1️⃣ Vendor performance is uneven, so procurement decisions need segmented actions, not blanket rules.<br>2️⃣ A KPI-first dashboard helps managers spot delivery and cost issues much earlier.<br>3️⃣ Drill-down views make negotiation priorities clearer and easier to defend.</p></div>
       </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
     </article>
 
-    <article class="tile tile-project tile-ml" id="ml" data-modal="modal-ml" tabindex="0" role="button" aria-label="Open ML project">
-      <div class="tile-head">
-        <span class="tile-tag">Machine Learning · Python</span>
-        <h2>Customer Churn &amp; Segmentation</h2>
-      </div>
-      <div class="tile-body">
-        <div class="summary-block"><span class="summary-label">Tool</span><p>Python with Pandas for segmentation; scikit-learn planned for the predictive churn model.</p></div>
-        <div class="summary-block"><span class="summary-label">Approach</span><p>RFM scoring as the foundation, then layer churn signals (recency thresholds, tenure, drop-off) to flag at-risk customers.</p></div>
-        <div class="summary-block"><span class="summary-label">Insight</span><p>About-to-Sleep and At-Risk segments are a sizeable share — concentrating retention spend here yields better ROI than blanket discounts.</p></div>
-      </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
-    </article>
 
     <article class="tile tile-about" id="about">
-      <h2>Toolbelt</h2>
-      <ul class="chips">
-        <li>Excel</li><li>SQL</li><li>Power BI</li><li>Python</li><li>Machine Learning</li>
-      </ul>
+      <div class="toolkit-row">
+        <h2>Toolkit</h2>
+        <ul class="chips">
+          <li>Excel</li><li>SQL</li><li>Power BI</li><li>Python</li>
+        </ul>
+      </div>
     </article>
 
     <article class="tile tile-contact" id="contact">
@@ -319,7 +309,6 @@ ORDER BY month;</code></pre>
     <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
     <button class="mnav-dot" data-index="1" aria-label="Python"></button>
     <button class="mnav-dot" data-index="2" aria-label="Power BI"></button>
-    <button class="mnav-dot" data-index="3" aria-label="ML"></button>
   </div>
 </dialog>
 
@@ -487,7 +476,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
             <tr><td>Lost Customers</td><td>Recovery Campaign</td><td>Significant discounts or free gifts.</td></tr>
           </tbody>
         </table>
-        <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/data-analysis/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
+        <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/data-analysis/blob/HEAD/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
       </div>
     </div>
     <button class="mnav-arrow mnav-next" aria-label="Next">&rsaquo;</button>
@@ -496,7 +485,6 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
     <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
     <button class="mnav-dot" data-index="1" aria-label="Python"></button>
     <button class="mnav-dot" data-index="2" aria-label="Power BI"></button>
-    <button class="mnav-dot" data-index="3" aria-label="ML"></button>
   </div>
 </dialog>
 
@@ -586,118 +574,9 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
     <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
     <button class="mnav-dot" data-index="1" aria-label="Python"></button>
     <button class="mnav-dot" data-index="2" aria-label="Power BI"></button>
-    <button class="mnav-dot" data-index="3" aria-label="ML"></button>
   </div>
 </dialog>
 
-<!-- ML MODAL -->
-<dialog class="modal" id="modal-ml">
-  <div class="modal-wrap">
-    <button class="mnav-arrow mnav-prev" aria-label="Previous">&lsaquo;</button>
-    <div class="modal-card">
-      <button class="modal-close" aria-label="Close">&times;</button>
-      <div class="modal-inner">
-        <span class="eyebrow">Machine Learning · Python</span>
-        <h2>Customer Churn Prediction &amp; Segmentation</h2>
-        <p class="lede">Combine RFM segmentation with churn signals to target retention campaigns at the right customers.</p>
-        <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify; scikit-learn for the modeling step. <strong>Technique:</strong> EDA, data transformations, aggregation; logistic regression and gradient boosting for churn prediction.</p>
-        <p><strong>Context:</strong> SuperStore wants to retain loyal customers and re-engage those at risk. Marketing needs a per-customer retention priority score, not just a broad segment label.</p>
-
-        <h3>1 &middot; Data Cleaning</h3>
-        <pre><code>import pandas as pd, numpy as np
-import matplotlib.pyplot as plt, seaborn as sns, squarify
-
-# Drop duplicates &amp; cancelled orders
-order_info = order_info.drop_duplicates()
-order_info = order_info[~order_info['InvoiceNo'].astype(str).str.startswith('C')]
-order_info = order_info[order_info['InvoiceNo'].apply(lambda x: isinstance(x, int))]
-
-# Keep only valid rows
-order_info = order_info[
-    (order_info['Quantity'] &gt; 0) &amp;
-    (order_info['CustomerID'] != '') &amp;
-    (order_info['UnitPrice'] &gt; 0)
-]
-
-# Parse dates
-order_info['Date'] = pd.to_datetime(order_info['InvoiceDate'],
-                                     format='%m/%d/%y %H:%M', errors='coerce').dt.date
-order_info['Date'] = order_info['Date'].astype('datetime64[ns]')
-order_info = order_info.drop(columns=['InvoiceDate'])</code></pre>
-
-        <h3>2 &middot; RFM Segmentation Foundation</h3>
-        <pre><code>order_info['revenue'] = order_info['quantity'] * order_info['price']
-
-customer_rfm = order_info.groupby('customerid').agg(
-    {'date': 'max', 'invoiceid': 'nunique', 'revenue': 'sum'}
-).reset_index()
-
-# Recency = days from 31/12/2011
-customer_rfm['recency'] = (
-    pd.to_datetime('31/12/2011', format='%d/%m/%Y') - customer_rfm['date']
-).dt.days
-
-# Quintile scoring (R inverted)
-customer_rfm['r_rank'] = 6 - (pd.qcut(customer_rfm['recency'].rank(method='first'), 5, labels=False) + 1)
-customer_rfm['f_rank'] = pd.qcut(customer_rfm['frequency'].rank(method='first'), 5, labels=False) + 1
-customer_rfm['m_rank'] = pd.qcut(customer_rfm['monetory'].rank(method='first'),  5, labels=False) + 1
-customer_rfm['score']  = customer_rfm[['r_rank','f_rank','m_rank']].astype(str).agg(''.join, axis=1)
-
-customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')</code></pre>
-
-        <h3>3 &middot; From Segmentation to Churn Prediction</h3>
-        <p>The next step adds a binary churn label (<em>churned</em> = no purchase in N days) and engineers features: R, F, M values, customer tenure, category mix, and average order gap. A logistic regression baseline is trained first, then gradient boosting for lift. Output: churn probability per customer, combined with segment label to rank retention priority.</p>
-
-        <h3>4 &middot; Visualization</h3>
-        <div class="gallery">
-          <img src="assets/Avg%20Recency%20by%20Segment.png" alt="Avg recency by segment" loading="lazy" />
-          <img src="assets/Avg%20Frequency%20by%20Segment.png" alt="Avg frequency by segment" loading="lazy" />
-          <img src="assets/%25%20Revenue%20by%20Segment.png" alt="% revenue by segment" loading="lazy" />
-          <img src="assets/%25%20Customers%20Treemap.png" alt="% customers treemap" loading="lazy" />
-        </div>
-
-        <h3>5 &middot; Insights &amp; Recommendations</h3>
-        <p>By end of 2011, SuperStore had a <em>mixed business situation</em>: Champions (19.2%) and Hibernating (15.9%) are the two largest groups &mdash; a wide gap between best and most-disengaged customers. The company over-relies on Champions, suggesting friction in converting new buyers to loyal ones.</p>
-
-        <h4>Segment Characteristics</h4>
-        <table class="data">
-          <thead><tr><th>Segment</th><th>Characteristics &amp; RFM Scores</th></tr></thead>
-          <tbody>
-            <tr><td>Champions</td><td>Highly engaged and valuable<br><small>555, 554, 544, 545, 454, 455, 445</small></td></tr>
-            <tr><td>Loyal</td><td>Regularly purchases; strong retention<br><small>543, 444, 435, 355, 354, 345, 344, 335</small></td></tr>
-            <tr><td>Potential Loyalist</td><td>Engaging but not fully committed<br><small>553, 551, 552, 541, 542, 533, 532, 531, 452, 451, 442, 441, 431, 453, 433, 432, 423, 353, 352, 351, 342, 341, 333, 323</small></td></tr>
-            <tr><td>Hibernating</td><td>Inactive but may return with effort<br><small>332, 322, 233, 232, 223, 222, 132, 123, 122, 212, 211</small></td></tr>
-            <tr><td>About to Sleep</td><td>Decreasing engagement; needs attention<br><small>331, 321, 312, 221, 213, 231, 241, 251</small></td></tr>
-            <tr><td>At Risk</td><td>Likely to disengage; require intervention<br><small>255, 254, 245, 244, 253, 252, 243, 242, 235, 234, 225, 224, 153, 152, 145, 143, 142, 135, 134, 133, 125, 124</small></td></tr>
-            <tr><td>Lost Customers</td><td>No recent activity; need reactivation<br><small>111, 112, 121, 131, 141, 151</small></td></tr>
-          </tbody>
-        </table>
-
-        <h4>Campaign Recommendations</h4>
-        <table class="data">
-          <thead><tr><th>Segment</th><th>Campaign</th><th>Description</th></tr></thead>
-          <tbody>
-            <tr><td>Champions</td><td>Exclusive Rewards</td><td>Tiered loyalty, early sale access, gifts.</td></tr>
-            <tr><td>Loyal</td><td>Personalized Communication</td><td>Product recs on past purchases &amp; special dates.</td></tr>
-            <tr><td>Potential Loyalist</td><td>Engagement Incentives</td><td>Promos to encourage repeat purchases.</td></tr>
-            <tr><td>Hibernating</td><td>Re-Engagement</td><td>Email discounts &amp; new offerings.</td></tr>
-            <tr><td>About to Sleep</td><td>Nudge Reminders</td><td>Special offers to revive declining engagement.</td></tr>
-            <tr><td>At Risk</td><td>Win-Back Offers</td><td>Limited-time discounts or exclusive deals.</td></tr>
-            <tr><td>Lost Customers</td><td>Recovery Campaign</td><td>Significant discounts or free gifts.</td></tr>
-          </tbody>
-        </table>
-        <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/data-analysis/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View segmentation notebook</a></p>
-      </div>
-    </div>
-    <button class="mnav-arrow mnav-next" aria-label="Next">&rsaquo;</button>
-  </div>
-  <div class="mnav-dots">
-    <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
-    <button class="mnav-dot" data-index="1" aria-label="Python"></button>
-    <button class="mnav-dot" data-index="2" aria-label="Power BI"></button>
-    <button class="mnav-dot" data-index="3" aria-label="ML"></button>
-  </div>
-</dialog>
 
 <script src="assets/js/main.js"></script>
 </body>
