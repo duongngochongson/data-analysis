@@ -1,30 +1,20 @@
-# Portfolio · duongngochongson
+# Data Analysis Portfolio
 
-Data analyst portfolio site — Apple-inspired dark bento layout, vanilla HTML/CSS/JS, no build step.
+Personal projects covering SQL, Python, Power BI, and Machine Learning.
 
-**Live:** https://duongngochongson.github.io/store/
+**Live site:** https://duongngochongson.github.io/data-analysis/
 
 ## Projects
 
-| Project | Tool | File |
-|---|---|---|
-| eCommerce User Behavior Exploration | SQL · BigQuery | [`Explore Ecommerce Dataset.sql`](projects/Explore%20Ecommerce%20Dataset.sql) |
-| Retailer RFM Segmentation | Python · Pandas | [`RFM.ipynb`](projects/RFM.ipynb) |
-| Purchasing Department Performance | Power BI · DAX | [`Purchasing Vendor Performance.pbix`](projects/Purchasing%20Vendor%20Performance.pbix) |
-| Customer Churn &amp; Segmentation | Machine Learning · Python | Foundation in [`RFM.ipynb`](projects/RFM.ipynb) |
+| Project | Tools |
+|---|---|
+| eCommerce User Behavior Exploration | SQL · BigQuery |
+| Retailer RFM Segmentation | Python · Pandas |
+| Purchasing Department Performance | Power BI · DAX |
+| Customer Churn Prediction & Segmentation | Machine Learning · Python |
 
-## Structure
+## Contact
 
-```
-.
-├── index.html              # Main page
-├── assets/
-│   ├── css/style.css       # Dark Apple-style design
-│   ├── js/main.js          # Modal nav + IntersectionObserver
-│   └── images/             # Chart and dashboard screenshots
-└── projects/               # Raw deliverables (.sql / .ipynb / .pbix)
-```
-
-## Deploy
-
-GitHub Pages from the `Portfolio` branch.
+- GitHub: [duongngochongson](https://github.com/duongngochongson)
+- LinkedIn: [duongngochongson](https://www.linkedin.com/in/duongngochongson/)
+- Email: duongngochongson@gmail.com
