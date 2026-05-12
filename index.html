@@ -25,7 +25,7 @@
         <div class="summary-block"><span class="summary-label">Approach</span><p>Eight analytical queries using <code>UNNEST</code> on nested hits and product fields, CTEs and window functions to slice sessions, revenue and the purchase funnel.</p></div>
         <div class="summary-block"><span class="summary-label">Insight</span><p>March 2017 hit the highest purchase rate at 12.64%; Google dominated traffic while YouTube and Facebook carried the highest bounce rates.</p></div>
       </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
+      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
     </article>
 
     <article class="tile tile-project tile-python" id="python" data-modal="modal-python" tabindex="0" role="button" aria-label="Open Python project">
@@ -38,7 +38,7 @@
         <div class="summary-block"><span class="summary-label">Approach</span><p>Clean SuperStore transactions, score Recency / Frequency / Monetary with <code>pd.qcut</code> quintiles, map customers to seven actionable segments.</p></div>
         <div class="summary-block"><span class="summary-label">Insight</span><p>Champions are 19.2% of customers, Hibernating 15.9%. Focus on Recency and Frequency over Monetary to convert Potential Loyalists.</p></div>
       </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
+      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
     </article>
 
     <article class="tile tile-project tile-powerbi" id="powerbi" data-modal="modal-powerbi" tabindex="0" role="button" aria-label="Open Power BI project">
@@ -51,7 +51,7 @@
         <div class="summary-block"><span class="summary-label">Approach</span><p>Apply design thinking to define North Star (% No-error Orders), then build an Overview and a Vendor Detail dashboard.</p></div>
         <div class="summary-block"><span class="summary-label">Insight</span><p>Pedals subcategory: 76% error-free orders. Vendor 1586 leads at 78.72%; Vendor 1506 needs freight-cost negotiation.</p></div>
       </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
+      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
     </article>
 
     <article class="tile tile-project tile-ml" id="ml" data-modal="modal-ml" tabindex="0" role="button" aria-label="Open ML project">
@@ -64,7 +64,7 @@
         <div class="summary-block"><span class="summary-label">Approach</span><p>RFM scoring as the foundation, then layer churn signals (recency thresholds, tenure, drop-off) to flag at-risk customers.</p></div>
         <div class="summary-block"><span class="summary-label">Insight</span><p>About-to-Sleep and At-Risk segments are a sizeable share — concentrating retention spend here yields better ROI than blanket discounts.</p></div>
       </div>
-      <div class="tile-foot">Read full case <span aria-hidden="true">→</span></div>
+      <div class="tile-foot">Read full case <span aria-hidden="true">&rarr;</span></div>
     </article>
 
     <article class="tile tile-about" id="about">
@@ -76,7 +76,7 @@
 
     <article class="tile tile-contact" id="contact">
       <div class="contact-row">
-        <h2>Let’s talk.</h2>
+        <h2>Let's talk.</h2>
         <a class="social-btn" href="https://github.com/duongngochongson" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         </a>
@@ -95,9 +95,9 @@
 <!-- SQL MODAL -->
 <dialog class="modal" id="modal-sql">
   <div class="modal-wrap">
-    <button class="mnav-arrow mnav-prev" aria-label="Previous">‹</button>
+    <button class="mnav-arrow mnav-prev" aria-label="Previous">&lsaquo;</button>
     <div class="modal-card">
-      <button class="modal-close" aria-label="Close">✕</button>
+      <button class="modal-close" aria-label="Close">&times;</button>
       <div class="modal-inner">
         <span class="eyebrow">SQL · BigQuery</span>
         <h2>SQL Explore eCommerce Dataset</h2>
@@ -105,7 +105,7 @@
         <p><strong>Approach &amp; Platform:</strong> Explore a public dataset of Google Analytics in BigQuery. <strong>Main Techniques:</strong> Window functions, CTEs, <code>UNNEST</code> on nested <code>hits</code> and <code>product</code> arrays.</p>
         <p><strong>Result:</strong> Extract key insights, such as engagement rates and revenue performance over time.</p>
 
-        <h3>Query 01 · Total visits, pageviews, transactions (Jan–Mar 2017)</h3>
+        <h3>Query 01 &middot; Total visits, pageviews, transactions (Jan&ndash;Mar 2017)</h3>
         <pre><code>SELECT
     FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
     SUM(totals.visits)       AS number_of_visit,
@@ -122,9 +122,9 @@ GROUP BY month;</code></pre>
             <tr><td>03-2017</td><td>69,931</td><td>259,522</td><td>993</td></tr>
           </tbody>
         </table>
-        <p>✅ March 2017 had the most transactions; January 2017 had the highest visits.</p>
+        <p>&#x2705; March 2017 had the most transactions; January 2017 had the highest visits.</p>
 
-        <h3>Query 02 · Bounce rate per traffic source (Jul 2017)</h3>
+        <h3>Query 02 &middot; Bounce rate per traffic source (Jul 2017)</h3>
         <pre><code>SELECT
     trafficSource.source,
     COUNT(visitNumber)                                       AS total_visits,
@@ -143,9 +143,9 @@ ORDER BY total_visits DESC;</code></pre>
             <tr><td>m.facebook.com</td><td>669</td><td>430</td><td>64.28%</td></tr>
           </tbody>
         </table>
-        <p>✅ Google had the highest visits; YouTube and Facebook had the highest bounce rates.</p>
+        <p>&#x2705; Google had the highest visits; YouTube and Facebook had the highest bounce rates.</p>
 
-        <h3>Query 03 · Revenue by traffic source, weekly &amp; monthly (Jun 2017)</h3>
+        <h3>Query 03 &middot; Revenue by traffic source, weekly &amp; monthly (Jun 2017)</h3>
         <pre><code>WITH monthly_revenue AS (
     SELECT "month" AS time_type,
         FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS time,
@@ -179,9 +179,9 @@ ORDER BY revenue DESC;</code></pre>
             <tr><td>Month</td><td>06-2017</td><td>dfa</td><td>$8,862.23</td></tr>
           </tbody>
         </table>
-        <p>✅ Direct traffic dominated June 2017 with ~$97k monthly revenue, far ahead of Google ($18.7k).</p>
+        <p>&#x2705; Direct traffic dominated June 2017 with ~$97k monthly revenue, far ahead of Google ($18.7k).</p>
 
-        <h3>Query 04 · Avg pageviews: purchasers vs non-purchasers (Jun–Jul 2017)</h3>
+        <h3>Query 04 &middot; Avg pageviews: purchasers vs non-purchasers (Jun&ndash;Jul 2017)</h3>
         <pre><code>WITH purchase_data AS (
     SELECT FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
         ROUND(SUM(totals.pageviews) / COUNT(DISTINCT fullVisitorId), 2) AS avg_pageviews_purchase
@@ -204,9 +204,9 @@ SELECT p.month, p.avg_pageviews_purchase, n.avg_pageviews_non_purchase
 FROM purchase_data p
 FULL OUTER JOIN non_purchase_data n USING (month)
 ORDER BY p.month;</code></pre>
-        <p>✅ Purchasers viewed significantly more pages than non-purchasers; July had slightly higher averages than June.</p>
+        <p>&#x2705; Purchasers viewed significantly more pages than non-purchasers; July had slightly higher averages than June.</p>
 
-        <h3>Query 05 · Avg transactions per purchasing user (Jul 2017)</h3>
+        <h3>Query 05 &middot; Avg transactions per purchasing user (Jul 2017)</h3>
         <pre><code>SELECT
     "201707" AS Month,
     ROUND(SUM(totals.transactions) / COUNT(DISTINCT fullVisitorId), 2)
@@ -220,7 +220,7 @@ WHERE totals.transactions &gt;= 1
           <tbody><tr><td>201707</td><td>4.16</td></tr></tbody>
         </table>
 
-        <h3>Query 06 · Avg revenue per session for purchasers (Jul 2017)</h3>
+        <h3>Query 06 &middot; Avg revenue per session for purchasers (Jul 2017)</h3>
         <pre><code>SELECT
     FORMAT_DATE('%Y-%m', PARSE_DATE('%Y%m%d', date)) AS month,
     ROUND((SUM(product.productRevenue) / SUM(totals.visits)) / 1000000, 2)
@@ -235,7 +235,7 @@ GROUP BY month;</code></pre>
           <tbody><tr><td>2017-07</td><td>$43.86</td></tr></tbody>
         </table>
 
-        <h3>Query 07 · Cross-sell from “YouTube Men’s Vintage Henley” (Jul 2017)</h3>
+        <h3>Query 07 &middot; Cross-sell from &ldquo;YouTube Men&rsquo;s Vintage Henley&rdquo; (Jul 2017)</h3>
         <pre><code>WITH henley_cust_id AS (
     SELECT DISTINCT fullVisitorId
     FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
@@ -259,16 +259,16 @@ ORDER BY quantity DESC;</code></pre>
           <thead><tr><th>Other purchased products</th><th>Qty</th></tr></thead>
           <tbody>
             <tr><td>Google Sunglasses</td><td>20</td></tr>
-            <tr><td>Google Women’s Vintage Hero Tee</td><td>7</td></tr>
+            <tr><td>Google Women's Vintage Hero Tee</td><td>7</td></tr>
             <tr><td>SPF-15 Slim &amp; Slender Lip Balm</td><td>6</td></tr>
-            <tr><td>Google Women’s Short Sleeve Hero Tee</td><td>4</td></tr>
-            <tr><td>YouTube Men’s Fleece Hoodie Black</td><td>3</td></tr>
-            <tr><td>Google Men’s Short Sleeve Badge Tee</td><td>3</td></tr>
+            <tr><td>Google Women's Short Sleeve Hero Tee</td><td>4</td></tr>
+            <tr><td>YouTube Men's Fleece Hoodie Black</td><td>3</td></tr>
+            <tr><td>Google Men's Short Sleeve Badge Tee</td><td>3</td></tr>
           </tbody>
         </table>
-        <p>✅ Customers who bought the Henley favored Google Sunglasses, highlighting strong interest in casual Google/YouTube branded accessories.</p>
+        <p>&#x2705; Customers who bought the Henley favored Google Sunglasses, highlighting strong interest in casual Google/YouTube branded accessories.</p>
 
-        <h3>Query 08 · Cohort funnel: view → cart → purchase (Q1 2017)</h3>
+        <h3>Query 08 &middot; Cohort funnel: view &rarr; cart &rarr; purchase (Q1 2017)</h3>
         <pre><code>WITH productview AS (
     SELECT FORMAT_DATE("%Y%m", PARSE_DATE("%Y%m%d", date)) AS month,
         COUNT(eCommerceAction.action_type) AS num_product_view
@@ -309,11 +309,11 @@ ORDER BY month;</code></pre>
             <tr><td>201703</td><td>23,549</td><td>8,782</td><td>2,977</td><td>37.29%</td><td>12.64%</td></tr>
           </tbody>
         </table>
-        <p>✅ March 2017 peaked at 12.64% purchase rate; upward trend across all three months signals improving funnel health.</p>
+        <p>&#x2705; March 2017 peaked at 12.64% purchase rate; upward trend across all three months signals improving funnel health.</p>
         <p class="modal-actions"><a class="btn" href="projects/Explore%20Ecommerce%20Dataset.sql" target="_blank" rel="noopener">View .sql file</a></p>
       </div>
     </div>
-    <button class="mnav-arrow mnav-next" aria-label="Next">›</button>
+    <button class="mnav-arrow mnav-next" aria-label="Next">&rsaquo;</button>
   </div>
   <div class="mnav-dots">
     <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
@@ -326,9 +326,9 @@ ORDER BY month;</code></pre>
 <!-- PYTHON MODAL -->
 <dialog class="modal" id="modal-python">
   <div class="modal-wrap">
-    <button class="mnav-arrow mnav-prev" aria-label="Previous">‹</button>
+    <button class="mnav-arrow mnav-prev" aria-label="Previous">&lsaquo;</button>
     <div class="modal-card">
-      <button class="modal-close" aria-label="Close">✕</button>
+      <button class="modal-close" aria-label="Close">&times;</button>
       <div class="modal-inner">
         <span class="eyebrow">Python · Pandas</span>
         <h2>Python RFM Model Analysis</h2>
@@ -336,8 +336,8 @@ ORDER BY month;</code></pre>
         <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify. <strong>Technique:</strong> EDA, data transformations, aggregation and grouping.</p>
         <p><strong>Context:</strong> SuperStore, a global retail company, seeks to segment its large customer base for marketing campaigns. The RFM model scores each customer on three dimensions: <em>how recently</em> they bought, <em>how often</em>, and <em>how much</em> they spent.</p>
 
-        <h3>1 · Data Cleaning</h3>
-        <p>The dataset has two tables: transaction information (many-to-one: each order ID → multiple product IDs) and a segmentation lookup table.</p>
+        <h3>1 &middot; Data Cleaning</h3>
+        <p>The dataset has two tables: transaction information (many-to-one: each order ID &rarr; multiple product IDs) and a segmentation lookup table.</p>
         <h4>Import libraries</h4>
         <pre><code>!pip install squarify
 
@@ -396,7 +396,7 @@ order_info = order_info.rename(columns={
     'Country': 'country', 'Date': 'date'
 })</code></pre>
 
-        <h3>2 · RFM Segmentation</h3>
+        <h3>2 &middot; RFM Segmentation</h3>
         <pre><code># Revenue column
 order_info['revenue'] = order_info['quantity'] * order_info['price']
 
@@ -411,7 +411,7 @@ customer_rfm['date'] = (
 ).dt.days
 customer_rfm.columns = ['customerid', 'recency', 'frequency', 'monetory']
 
-# Score 1–5 with quintiles (R inverted: lower recency = higher score)
+# Score 1-5 with quintiles (R inverted: lower recency = higher score)
 customer_rfm['r_rank'] = 6 - (pd.qcut(customer_rfm['recency'].rank(method='first'), 5, labels=False) + 1)
 customer_rfm['f_rank'] = pd.qcut(customer_rfm['frequency'].rank(method='first'), 5, labels=False) + 1
 customer_rfm['m_rank'] = pd.qcut(customer_rfm['monetory'].rank(method='first'),  5, labels=False) + 1
@@ -428,7 +428,7 @@ rfm = customer_rfm.groupby('segment').agg(
     sum_rvn=('monetory','sum')
 ).round(1).reset_index()</code></pre>
 
-        <h3>3 · Visualization</h3>
+        <h3>3 &middot; Visualization</h3>
         <pre><code>rfm['%_ctm'] = round((rfm['num_ctm'] / rfm['num_ctm'].sum()) * 100, 1)
 rfm['%_rvn'] = round((rfm['sum_rvn'] / rfm['sum_rvn'].sum()) * 100, 1)
 color = sns.color_palette("RdYlGn_r", len(rfm))
@@ -450,15 +450,15 @@ plt.figure(figsize=(16, 6))
 squarify.plot(sizes=rfm_s['%_ctm'], label=labels, color=color, alpha=0.8)
 plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <div class="gallery">
-          <img src="assets/images/rfm-avg-recency.png" alt="Avg recency by segment" loading="lazy" />
-          <img src="assets/images/rfm-avg-frequency.png" alt="Avg frequency by segment" loading="lazy" />
-          <img src="assets/images/rfm-pct-revenue.png" alt="% revenue by segment" loading="lazy" />
-          <img src="assets/images/rfm-pct-customers.png" alt="% customers treemap" loading="lazy" />
+          <img src="assets/Avg%20Recency%20by%20Segment.png" alt="Avg recency by segment" loading="lazy" />
+          <img src="assets/Avg%20Frequency%20by%20Segment.png" alt="Avg frequency by segment" loading="lazy" />
+          <img src="assets/%25%20Revenue%20by%20Segment.png" alt="% revenue by segment" loading="lazy" />
+          <img src="assets/%25%20Customers%20Treemap.png" alt="% customers treemap" loading="lazy" />
         </div>
 
-        <h3>4 · Insights &amp; Recommendations</h3>
+        <h3>4 &middot; Insights &amp; Recommendations</h3>
         <p>By end of 2011, SuperStore had a <em>mixed business situation</em>: strong segments (Champions, Loyal, Potential Loyalist) alongside weak ones (Hibernating, About to Sleep, At Risk, Lost). Champions made up <strong>19.2%</strong> of total customers; Hibernating <strong>15.9%</strong>.</p>
-        <p>Clear skewed averages indicate a <em>significant gap</em> between strong and weak segments. Heavy reliance on Champions suggests issues in <em>turning new customers into loyal ones</em>. Prioritize <strong>Recency and Frequency</strong> over Monetary — loyal shoppers make many purchases at lower amounts throughout the year.</p>
+        <p>Clear skewed averages indicate a <em>significant gap</em> between strong and weak segments. Heavy reliance on Champions suggests issues in <em>turning new customers into loyal ones</em>. Prioritize <strong>Recency and Frequency</strong> over Monetary &mdash; loyal shoppers make many purchases at lower amounts throughout the year.</p>
 
         <h4>Segment Characteristics</h4>
         <table class="data">
@@ -490,7 +490,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/Portfolio/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
       </div>
     </div>
-    <button class="mnav-arrow mnav-next" aria-label="Next">›</button>
+    <button class="mnav-arrow mnav-next" aria-label="Next">&rsaquo;</button>
   </div>
   <div class="mnav-dots">
     <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
@@ -503,17 +503,17 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
 <!-- POWER BI MODAL -->
 <dialog class="modal" id="modal-powerbi">
   <div class="modal-wrap">
-    <button class="mnav-arrow mnav-prev" aria-label="Previous">‹</button>
+    <button class="mnav-arrow mnav-prev" aria-label="Previous">&lsaquo;</button>
     <div class="modal-card">
-      <button class="modal-close" aria-label="Close">✕</button>
+      <button class="modal-close" aria-label="Close">&times;</button>
       <div class="modal-inner">
         <span class="eyebrow">Power BI · DAX · Power Query</span>
         <h2>Purchasing Department Performance</h2>
-        <p class="lede">Operational dashboards for the AdventureWorks purchasing team — vendor reliability and cost optimization.</p>
+        <p class="lede">Operational dashboards for the AdventureWorks purchasing team &mdash; vendor reliability and cost optimization.</p>
         <p><strong>Approach:</strong> Apply design thinking to identify key metrics, pull data from BigQuery, transform in Power Query, model relationships, and build DAX measures.</p>
         <p><strong>Context:</strong> AdventureWorks is a fictitious bicycle manufacturer. The purchasing department must supply enough goods on time at optimal import prices.</p>
 
-        <h3>Design Thinking · Step 1 — Empathize</h3>
+        <h3>Design Thinking &middot; Step 1 &mdash; Empathize</h3>
         <table class="data">
           <tbody>
             <tr><th>Who views this?</th><td>Purchasing Manager, accountant.</td></tr>
@@ -529,7 +529,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <h4>Stakeholder Empathy Map</h4>
         <table class="data">
           <tbody>
-            <tr><th>Pains</th><td>Large amount of data to analyze; difficulty identifying what’s important.</td></tr>
+            <tr><th>Pains</th><td>Large amount of data to analyze; difficulty identifying what's important.</td></tr>
             <tr><th>Thinking &amp; feeling</th><td>Worry about purchasing department effectiveness; opinions about vendor reliability.</td></tr>
             <tr><th>Seeing</th><td>Company purchasing overview and per-vendor info for comparison.</td></tr>
             <tr><th>Saying &amp; doing</th><td>Overview dashboard gives the big picture; vendor detail gives in-depth analysis.</td></tr>
@@ -537,7 +537,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
           </tbody>
         </table>
 
-        <h3>Design Thinking · Step 2 — North Star Metric</h3>
+        <h3>Design Thinking &middot; Step 2 &mdash; North Star Metric</h3>
         <table class="data">
           <tbody>
             <tr><th>Value to measure</th><td>Effectiveness of orders.</td></tr>
@@ -547,24 +547,24 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
           </tbody>
         </table>
 
-        <h3>Design Thinking · Step 3 — Ideate</h3>
+        <h3>Design Thinking &middot; Step 3 &mdash; Ideate</h3>
         <table class="data">
-          <thead><tr><th>Layer 0 — Total Metrics</th><th>Layer 1 — Breakdown</th></tr></thead>
+          <thead><tr><th>Layer 0 &mdash; Total Metrics</th><th>Layer 1 &mdash; Breakdown</th></tr></thead>
           <tbody>
             <tr><td>% no-error orders, % received, % rejected, % extra fee</td><td>Over time, by ship method, by sub-category</td></tr>
           </tbody>
         </table>
 
         <h3>Data Model</h3>
-        <div class="gallery one-col"><img src="assets/images/powerbi-data-model.png" alt="Power BI data model" loading="lazy" /></div>
+        <div class="gallery one-col"><img src="assets/Data%20Model.png" alt="Power BI data model" loading="lazy" /></div>
 
-        <h3>Visual 1 · Vendor Performance Overview</h3>
-        <div class="gallery one-col"><img src="assets/images/powerbi-vendor-overview.png" alt="Vendor overview dashboard" loading="lazy" /></div>
-        <p>Pedals subcategory (2013–2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across 7 vendors. Reliability dipped to 71% in March 2014; costs spiked to 1.57M in July 2014. <strong>VendorID 1586</strong> leads at 78.72%; VendorID 1506 at 77.66% but not among top for low extra fees.</p>
+        <h3>Visual 1 &middot; Vendor Performance Overview</h3>
+        <div class="gallery one-col"><img src="assets/Vendor%20Overview%20Dashboard.png" alt="Vendor overview dashboard" loading="lazy" /></div>
+        <p>Pedals subcategory (2013&ndash;2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across 7 vendors. Reliability dipped to 71% in March 2014; costs spiked to 1.57M in July 2014. <strong>VendorID 1586</strong> leads at 78.72%; VendorID 1506 at 77.66% but not among top for low extra fees.</p>
 
-        <h3>Visual 2 · Vendor Performance Detail</h3>
-        <div class="gallery one-col"><img src="assets/images/powerbi-vendor-detail.png" alt="Vendor detail dashboard" loading="lazy" /></div>
-        <p>Pedals category extra fee is 9.5% vs 8.68% overall average — limiting competitiveness. <strong>Prioritize VendorID 1586</strong> for future orders; negotiate freight reduction with VendorID 1506 to improve cost efficiency.</p>
+        <h3>Visual 2 &middot; Vendor Performance Detail</h3>
+        <div class="gallery one-col"><img src="assets/Vendor%20Detail%20Dashboard.png" alt="Vendor detail dashboard" loading="lazy" /></div>
+        <p>Pedals category extra fee is 9.5% vs 8.68% overall average &mdash; limiting competitiveness. <strong>Prioritize VendorID 1586</strong> for future orders; negotiate freight reduction with VendorID 1506 to improve cost efficiency.</p>
 
         <h3>How to Use the Dashboard</h3>
         <table class="data">
@@ -580,7 +580,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <p class="modal-actions"><a class="btn" href="projects/Purchasing%20Vendor%20Performance.pbix" target="_blank" rel="noopener">Download .pbix</a></p>
       </div>
     </div>
-    <button class="mnav-arrow mnav-next" aria-label="Next">›</button>
+    <button class="mnav-arrow mnav-next" aria-label="Next">&rsaquo;</button>
   </div>
   <div class="mnav-dots">
     <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
@@ -593,9 +593,9 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
 <!-- ML MODAL -->
 <dialog class="modal" id="modal-ml">
   <div class="modal-wrap">
-    <button class="mnav-arrow mnav-prev" aria-label="Previous">‹</button>
+    <button class="mnav-arrow mnav-prev" aria-label="Previous">&lsaquo;</button>
     <div class="modal-card">
-      <button class="modal-close" aria-label="Close">✕</button>
+      <button class="modal-close" aria-label="Close">&times;</button>
       <div class="modal-inner">
         <span class="eyebrow">Machine Learning · Python</span>
         <h2>Customer Churn Prediction &amp; Segmentation</h2>
@@ -603,7 +603,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify; scikit-learn for the modeling step. <strong>Technique:</strong> EDA, data transformations, aggregation; logistic regression and gradient boosting for churn prediction.</p>
         <p><strong>Context:</strong> SuperStore wants to retain loyal customers and re-engage those at risk. Marketing needs a per-customer retention priority score, not just a broad segment label.</p>
 
-        <h3>1 · Data Cleaning</h3>
+        <h3>1 &middot; Data Cleaning</h3>
         <pre><code>import pandas as pd, numpy as np
 import matplotlib.pyplot as plt, seaborn as sns, squarify
 
@@ -625,7 +625,7 @@ order_info['Date'] = pd.to_datetime(order_info['InvoiceDate'],
 order_info['Date'] = order_info['Date'].astype('datetime64[ns]')
 order_info = order_info.drop(columns=['InvoiceDate'])</code></pre>
 
-        <h3>2 · RFM Segmentation Foundation</h3>
+        <h3>2 &middot; RFM Segmentation Foundation</h3>
         <pre><code>order_info['revenue'] = order_info['quantity'] * order_info['price']
 
 customer_rfm = order_info.groupby('customerid').agg(
@@ -645,19 +645,19 @@ customer_rfm['score']  = customer_rfm[['r_rank','f_rank','m_rank']].astype(str).
 
 customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')</code></pre>
 
-        <h3>3 · From Segmentation to Churn Prediction</h3>
+        <h3>3 &middot; From Segmentation to Churn Prediction</h3>
         <p>The next step adds a binary churn label (<em>churned</em> = no purchase in N days) and engineers features: R, F, M values, customer tenure, category mix, and average order gap. A logistic regression baseline is trained first, then gradient boosting for lift. Output: churn probability per customer, combined with segment label to rank retention priority.</p>
 
-        <h3>4 · Visualization</h3>
+        <h3>4 &middot; Visualization</h3>
         <div class="gallery">
-          <img src="assets/images/rfm-avg-recency.png" alt="Avg recency by segment" loading="lazy" />
-          <img src="assets/images/rfm-avg-frequency.png" alt="Avg frequency by segment" loading="lazy" />
-          <img src="assets/images/rfm-pct-revenue.png" alt="% revenue by segment" loading="lazy" />
-          <img src="assets/images/rfm-pct-customers.png" alt="% customers treemap" loading="lazy" />
+          <img src="assets/Avg%20Recency%20by%20Segment.png" alt="Avg recency by segment" loading="lazy" />
+          <img src="assets/Avg%20Frequency%20by%20Segment.png" alt="Avg frequency by segment" loading="lazy" />
+          <img src="assets/%25%20Revenue%20by%20Segment.png" alt="% revenue by segment" loading="lazy" />
+          <img src="assets/%25%20Customers%20Treemap.png" alt="% customers treemap" loading="lazy" />
         </div>
 
-        <h3>5 · Insights &amp; Recommendations</h3>
-        <p>By end of 2011, SuperStore had a <em>mixed business situation</em>: Champions (19.2%) and Hibernating (15.9%) are the two largest groups — a wide gap between best and most-disengaged customers. The company over-relies on Champions, suggesting friction in converting new buyers to loyal ones.</p>
+        <h3>5 &middot; Insights &amp; Recommendations</h3>
+        <p>By end of 2011, SuperStore had a <em>mixed business situation</em>: Champions (19.2%) and Hibernating (15.9%) are the two largest groups &mdash; a wide gap between best and most-disengaged customers. The company over-relies on Champions, suggesting friction in converting new buyers to loyal ones.</p>
 
         <h4>Segment Characteristics</h4>
         <table class="data">
@@ -689,7 +689,7 @@ customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')</code><
         <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/Portfolio/projects/RFM.ipynb" target="_blank" rel="noopener">View segmentation notebook</a></p>
       </div>
     </div>
-    <button class="mnav-arrow mnav-next" aria-label="Next">›</button>
+    <button class="mnav-arrow mnav-next" aria-label="Next">&rsaquo;</button>
   </div>
   <div class="mnav-dots">
     <button class="mnav-dot" data-index="0" aria-label="SQL"></button>
