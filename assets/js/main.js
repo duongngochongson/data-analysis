@@ -1,27 +1,46 @@
-// Year
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
 
-// Modal open/close
+const MODALS = ['modal-sql','modal-python','modal-powerbi','modal-ml'];
+let currentIdx = 0;
+
+function openModal(index) {
+  MODALS.forEach(id => { const d = document.getElementById(id); if (d.open) d.close(); });
+  currentIdx = index;
+  const dlg = document.getElementById(MODALS[index]);
+  dlg.showModal();
+  dlg.querySelector('.modal-inner').scrollTop = 0;
+  updateNavState(dlg);
+}
+
+function updateNavState(dlg) {
+  dlg.querySelector('.mnav-prev').disabled = currentIdx === 0;
+  dlg.querySelector('.mnav-next').disabled = currentIdx === MODALS.length - 1;
+  dlg.querySelectorAll('.mnav-dot').forEach((d,i) => d.classList.toggle('active', i === currentIdx));
+}
+
 document.querySelectorAll('[data-modal]').forEach(tile => {
-  const id = tile.getAttribute('data-modal');
-  const dlg = document.getElementById(id);
-  if (!dlg) return;
-  const open = () => { if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', ''); };
-  tile.addEventListener('click', open);
-  tile.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  const idx = MODALS.indexOf(tile.getAttribute('data-modal'));
+  tile.addEventListener('click', () => openModal(idx));
+  tile.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); openModal(idx); } });
 });
 
 document.querySelectorAll('.modal').forEach(dlg => {
-  const closeBtn = dlg.querySelector('.modal-close');
-  closeBtn?.addEventListener('click', () => dlg.close());
+  dlg.querySelector('.modal-close').addEventListener('click', () => dlg.close());
+  dlg.querySelector('.mnav-prev').addEventListener('click', () => openModal(currentIdx - 1));
+  dlg.querySelector('.mnav-next').addEventListener('click', () => openModal(currentIdx + 1));
+  dlg.querySelectorAll('.mnav-dot').forEach((dot,i) => dot.addEventListener('click', () => openModal(i)));
   dlg.addEventListener('click', e => {
-    const rect = dlg.getBoundingClientRect();
-    const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
-    if (!inside) dlg.close();
+    if (!e.target.closest('.modal-card') && !e.target.closest('.mnav-arrow') && !e.target.closest('.mnav-dot')) dlg.close();
   });
 });
 
-// Fade-in on scroll
+document.addEventListener('keydown', e => {
+  const open = document.querySelector('.modal[open]');
+  if (!open) return;
+  if (e.key==='ArrowLeft' && currentIdx > 0) openModal(currentIdx - 1);
+  if (e.key==='ArrowRight' && currentIdx < MODALS.length-1) openModal(currentIdx + 1);
+});
+
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.12 });
