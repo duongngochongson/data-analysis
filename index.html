@@ -310,7 +310,7 @@ ORDER BY month;</code></pre>
           </tbody>
         </table>
         <p>✅ March 2017 peaked at 12.64% purchase rate; upward trend across all three months signals improving funnel health.</p>
-        <p class="modal-actions"><a class="btn" href="projects/sql-ecommerce/Explore%20Ecommerce%20Dataset.sql" target="_blank" rel="noopener">View .sql file</a></p>
+        <p class="modal-actions"><a class="btn" href="projects/Explore%20Ecommerce%20Dataset.sql" target="_blank" rel="noopener">View .sql file</a></p>
       </div>
     </div>
     <button class="mnav-arrow mnav-next" aria-label="Next">›</button>
@@ -450,10 +450,10 @@ plt.figure(figsize=(16, 6))
 squarify.plot(sizes=rfm_s['%_ctm'], label=labels, color=color, alpha=0.8)
 plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <div class="gallery">
-          <img src="https://github.com/user-attachments/assets/ffee588b-8aa9-4ad2-871e-528c05393576" alt="Avg recency by segment" loading="lazy" />
-          <img src="https://github.com/user-attachments/assets/9f8a65b2-37fd-4356-82be-7946a4d606b7" alt="Avg frequency by segment" loading="lazy" />
-          <img src="https://github.com/user-attachments/assets/049d2f51-511d-4758-bac3-5bcc63cfcf9e" alt="% revenue by segment" loading="lazy" />
-          <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="% customers treemap" loading="lazy" />
+          <img src="assets/images/rfm-avg-recency.png" alt="Avg recency by segment" loading="lazy" />
+          <img src="assets/images/rfm-avg-frequency.png" alt="Avg frequency by segment" loading="lazy" />
+          <img src="assets/images/rfm-pct-revenue.png" alt="% revenue by segment" loading="lazy" />
+          <img src="assets/images/rfm-pct-customers.png" alt="% customers treemap" loading="lazy" />
         </div>
 
         <h3>4 · Insights &amp; Recommendations</h3>
@@ -556,14 +556,14 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         </table>
 
         <h3>Data Model</h3>
-        <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/018bbf03-71f5-439c-8f31-ad95a0716f28" alt="Power BI data model" loading="lazy" /></div>
+        <div class="gallery one-col"><img src="assets/images/powerbi-data-model.png" alt="Power BI data model" loading="lazy" /></div>
 
         <h3>Visual 1 · Vendor Performance Overview</h3>
-        <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Vendor overview dashboard" loading="lazy" /></div>
+        <div class="gallery one-col"><img src="assets/images/powerbi-vendor-overview.png" alt="Vendor overview dashboard" loading="lazy" /></div>
         <p>Pedals subcategory (2013–2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across 7 vendors. Reliability dipped to 71% in March 2014; costs spiked to 1.57M in July 2014. <strong>VendorID 1586</strong> leads at 78.72%; VendorID 1506 at 77.66% but not among top for low extra fees.</p>
 
         <h3>Visual 2 · Vendor Performance Detail</h3>
-        <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/b93e0fe5-e5f6-458b-97a8-5b3db8691e75" alt="Vendor detail dashboard" loading="lazy" /></div>
+        <div class="gallery one-col"><img src="assets/images/powerbi-vendor-detail.png" alt="Vendor detail dashboard" loading="lazy" /></div>
         <p>Pedals category extra fee is 9.5% vs 8.68% overall average — limiting competitiveness. <strong>Prioritize VendorID 1586</strong> for future orders; negotiate freight reduction with VendorID 1506 to improve cost efficiency.</p>
 
         <h3>How to Use the Dashboard</h3>
@@ -650,10 +650,10 @@ customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')</code><
 
         <h3>4 · Visualization</h3>
         <div class="gallery">
-          <img src="https://github.com/user-attachments/assets/ffee588b-8aa9-4ad2-871e-528c05393576" alt="Avg recency by segment" loading="lazy" />
-          <img src="https://github.com/user-attachments/assets/9f8a65b2-37fd-4356-82be-7946a4d606b7" alt="Avg frequency by segment" loading="lazy" />
-          <img src="https://github.com/user-attachments/assets/049d2f51-511d-4758-bac3-5bcc63cfcf9e" alt="% revenue by segment" loading="lazy" />
-          <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="% customers treemap" loading="lazy" />
+          <img src="assets/images/rfm-avg-recency.png" alt="Avg recency by segment" loading="lazy" />
+          <img src="assets/images/rfm-avg-frequency.png" alt="Avg frequency by segment" loading="lazy" />
+          <img src="assets/images/rfm-pct-revenue.png" alt="% revenue by segment" loading="lazy" />
+          <img src="assets/images/rfm-pct-customers.png" alt="% customers treemap" loading="lazy" />
         </div>
 
         <h3>5 · Insights &amp; Recommendations</h3>
