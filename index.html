@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hong Son — Data Analyst Portfolio</title>
+  <meta name="description" content="Data analyst portfolio: SQL, Python, Power BI, Machine Learning projects by Duong Ngoc Hong Son." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand">HS.</a>
+      <nav>
+        <a href="#sql">SQL</a>
+        <a href="#python">Python</a>
+        <a href="#powerbi">Power BI</a>
+        <a href="#ml">ML</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="bento">
+      <article class="tile tile-hero">
+        <div class="hero-content">
+          <p class="eyebrow">Data Analyst · Portfolio</p>
+          <h1>Turning data<br/>into decisions.</h1>
+          <p class="lede">Hi, I'm <strong>Duong Ngoc Hong Son</strong>. I build dashboards, segment customers, and explore behavior with SQL, Python &amp; Power BI.</p>
+          <div class="hero-cta">
+            <a href="#sql" class="btn">View work</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile tile-sql" id="sql" data-modal="modal-sql" tabindex="0" role="button" aria-label="Open SQL project">
+        <div class="tile-tag">SQL · BigQuery</div>
+        <h2>eCommerce User Behavior</h2>
+        <p>8 analytical queries on Google Analytics public dataset — sessions, bounce rate, revenue, cohort funnel.</p>
+        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
+      </article>
+
+      <article class="tile tile-python" id="python" data-modal="modal-python" tabindex="0" role="button" aria-label="Open Python project">
+        <div class="tile-tag">Python · Pandas</div>
+        <h2>Retailer RFM Segmentation</h2>
+        <p>Cleaned SuperStore transactions, scored customers on Recency, Frequency, Monetary, mapped 7 actionable segments.</p>
+        <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="RFM treemap of customer segments" loading="lazy" />
+        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
+      </article>
+
+      <article class="tile tile-powerbi" id="powerbi" data-modal="modal-powerbi" tabindex="0" role="button" aria-label="Open Power BI project">
+        <div class="tile-tag">Power BI · DAX</div>
+        <h2>Purchasing Vendor Performance</h2>
+        <p>Design-thinking dashboard for AdventureWorks — vendor reliability, costs, and error-free order rate.</p>
+        <img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Power BI vendor overview dashboard" loading="lazy" />
+        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
+      </article>
+
+      <article class="tile tile-ml" id="ml" data-modal="modal-ml" tabindex="0" role="button" aria-label="Open Machine Learning project">
+        <div class="tile-tag">ML · Python</div>
+        <h2>Customer Churn &amp; Segmentation</h2>
+        <p>Customer-level analytics combining churn signals with RFM segmentation for retention campaigns.</p>
+        <div class="tile-foot">Read case <span aria-hidden="true">→</span></div>
+      </article>
+
+      <article class="tile tile-about" id="about">
+        <div class="tile-tag">About</div>
+        <h2>Toolbelt</h2>
+        <ul class="chips">
+          <li>SQL</li><li>BigQuery</li><li>Python</li><li>Pandas</li><li>NumPy</li>
+          <li>Matplotlib</li><li>Seaborn</li><li>Power BI</li><li>DAX</li><li>Power Query</li>
+          <li>Design Thinking</li><li>RFM</li>
+        </ul>
+      </article>
+
+      <article class="tile tile-contact" id="contact">
+        <div class="tile-tag">Contact</div>
+        <h2>Let's talk.</h2>
+        <p>Open to data analyst roles &amp; freelance projects.</p>
+        <a class="btn" href="https://github.com/duongngochongson" target="_blank" rel="noopener">GitHub</a>
+      </article>
+    </section>
+  </main>
+
+  <!-- SQL Modal -->
+  <dialog class="modal" id="modal-sql">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="modal-inner">
+      <span class="eyebrow">SQL · BigQuery</span>
+      <h2>SQL eCommerce User Behavior Exploration</h2>
+      <p class="lede">Analyzing user engagement and revenue trends on Google Analytics public dataset.</p>
+
+      <h3>Approach</h3>
+      <p>BigQuery public GA sample. Heavy use of <code>UNNEST</code> on nested <code>hits</code> &amp; <code>product</code>, CTEs and window functions across 8 queries.</p>
+
+      <h3>Key questions answered</h3>
+      <ul>
+        <li>Visits, pageviews, transactions for Jan–Mar 2017</li>
+        <li>Bounce rate per traffic source (Jul 2017)</li>
+        <li>Revenue by source — weekly &amp; monthly (Jun 2017)</li>
+        <li>Avg pageviews: purchasers vs non-purchasers</li>
+        <li>Avg transactions / revenue per user</li>
+        <li>Cross-sell from "YouTube Men's Vintage Henley"</li>
+        <li>Cohort funnel: view → cart → purchase</li>
+      </ul>
+
+      <h3>Highlighted insight</h3>
+      <blockquote>March 2017 had the highest purchase rate (12.64%) and the most transactions; February peaked in add-to-cart engagement.</blockquote>
+
+      <p><a class="btn" href="https://github.com/duongngochongson/SQL-eCommerce-User-Behavior-Exploration" target="_blank" rel="noopener">View full repo</a></p>
+    </div>
+  </dialog>
+
+  <!-- Python Modal -->
+  <dialog class="modal" id="modal-python">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="modal-inner">
+      <span class="eyebrow">Python · Pandas</span>
+      <h2>Retailer RFM Segmentation</h2>
+      <p class="lede">Segmenting SuperStore customers by Recency, Frequency, and Monetary value to drive marketing campaigns.</p>
+
+      <h3>Pipeline</h3>
+      <ol>
+        <li>Pull transactions &amp; segmentation lookup from Google Sheets</li>
+        <li>Clean: drop duplicates, cancelled orders (<code>InvoiceNo</code> starts with C), negative qty/price</li>
+        <li>Score R, F, M with <code>pd.qcut</code> quintiles → 3-digit RFM score</li>
+        <li>Map to 7 named segments &amp; aggregate</li>
+        <li>Visualize with Seaborn &amp; Squarify</li>
+      </ol>
+
+      <div class="gallery">
+        <img src="https://github.com/user-attachments/assets/ffee588b-8aa9-4ad2-871e-528c05393576" alt="Average recency by segment" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/9f8a65b2-37fd-4356-82be-7946a4d606b7" alt="Average frequency by segment" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/049d2f51-511d-4758-bac3-5bcc63cfcf9e" alt="Percent revenue by segment" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="Percent customers by segment treemap" loading="lazy" />
+      </div>
+
+      <h3>Highlighted insight</h3>
+      <blockquote>Champions make up 19.2% of customers; Hibernating 15.9%. SuperStore should prioritize Recency &amp; Frequency over Monetary to convert Potential Loyalists.</blockquote>
+
+      <p><a class="btn" href="https://github.com/duongngochongson/Python-Retailer-RFM-Model-Analysis" target="_blank" rel="noopener">View full repo</a></p>
+    </div>
+  </dialog>
+
+  <!-- Power BI Modal -->
+  <dialog class="modal" id="modal-powerbi">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="modal-inner">
+      <span class="eyebrow">Power BI · DAX · Power Query</span>
+      <h2>Purchasing Department Performance</h2>
+      <p class="lede">Operational dashboard for the AdventureWorks purchasing team — vendor reliability and cost optimization.</p>
+
+      <h3>Design Thinking → North Star</h3>
+      <p><strong>% No-error Orders</strong> — orders where received quantity equals stockable quantity. Chosen because the purchasing team's goal is to keep production supplied.</p>
+
+      <h3>Two dashboards</h3>
+      <div class="gallery">
+        <img src="https://github.com/user-attachments/assets/018bbf03-71f5-439c-8f31-ad95a0716f28" alt="Power BI data model" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Vendor overview dashboard" loading="lazy" />
+        <img src="https://github.com/user-attachments/assets/b93e0fe5-e5f6-458b-97a8-5b3db8691e75" alt="Vendor detail dashboard" loading="lazy" />
+      </div>
+
+      <h3>Highlighted insight</h3>
+      <blockquote>In the Pedals subcategory, 76% of orders were error-free with avg 8.68% extra fee. Vendor 1586 leads on reliability (78.72%) — prioritize. Vendor 1506 needs freight-cost negotiation.</blockquote>
+
+      <p><a class="btn" href="https://github.com/duongngochongson/Power-BI-Purchasing-Department-Performance-Visualization" target="_blank" rel="noopener">View full repo</a></p>
+    </div>
+  </dialog>
+
+  <!-- ML Modal -->
+  <dialog class="modal" id="modal-ml">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <div class="modal-inner">
+      <span class="eyebrow">Machine Learning · Python</span>
+      <h2>Customer Churn Prediction &amp; Segmentation</h2>
+      <p class="lede">Combines RFM segmentation with churn signals to target retention campaigns at the right customers.</p>
+
+      <h3>Status</h3>
+      <p>This case study currently covers the segmentation foundation. A predictive churn model (logistic regression / gradient boosting on R, F, M and tenure features) is the planned next step.</p>
+
+      <h3>Why it matters</h3>
+      <p>Knowing <em>who</em> is at risk lets marketing concentrate budget on customers most likely to respond — rather than spraying discounts across all 'At Risk' segments.</p>
+
+      <p><a class="btn" href="https://github.com/duongngochongson/Machine-Learning-Customer-Churn-Prediction-and-Segmentation" target="_blank" rel="noopener">View full repo</a></p>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Duong Ngoc Hong Son · Built with vanilla HTML, CSS &amp; a sprinkle of JS.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
