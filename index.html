@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>duongngochongson — Data Analyst Portfolio</title>
+  <title>Data Analyst Portfolio</title>
   <meta name="description" content="Data analyst portfolio by Duong Ngoc Hong Son." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,12 +11,6 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-
-<header class="nav">
-  <div class="nav-inner">
-    <a href="#top" class="brand">duongngochongson</a>
-  </div>
-</header>
 
 <main id="top">
   <section class="bento">
@@ -190,7 +184,7 @@ ORDER BY p.month;</code></pre>
     AS avg_total_transactions_per_user
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
   UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-WHERE totals.transactions >= 1 AND product.productRevenue IS NOT NULL;</code></pre>
+WHERE totals.transactions &gt;= 1 AND product.productRevenue IS NOT NULL;</code></pre>
         <p>Purchasing users averaged <strong>4.16</strong> transactions in July 2017.</p>
 
         <h3>Query 06 · Avg revenue per session for purchasers (Jul 2017)</h3>
@@ -210,7 +204,7 @@ GROUP BY month;</code></pre>
   FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
     UNNEST(hits) AS hits, UNNEST(hits.product) AS product
   WHERE product.v2ProductName = "YouTube Men's Vintage Henley"
-    AND totals.transactions >= 1 AND product.productRevenue IS NOT NULL
+    AND totals.transactions &gt;= 1 AND product.productRevenue IS NOT NULL
 )
 SELECT
   product.v2ProductName AS other_purchased_products,
@@ -219,7 +213,7 @@ FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
   UNNEST(hits) AS hits, UNNEST(hits.product) AS product
 WHERE fullVisitorId IN (SELECT * FROM henley_buyers)
   AND product.v2ProductName &lt;&gt; "YouTube Men's Vintage Henley"
-  AND totals.transactions >= 1 AND product.productRevenue IS NOT NULL
+  AND totals.transactions &gt;= 1 AND product.productRevenue IS NOT NULL
 GROUP BY product.v2ProductName
 ORDER BY quantity DESC;</code></pre>
         <p>Top cross-sells: Google Sunglasses (20 units), Women's Vintage Hero Tee (7), SPF-15 Lip Balm (6) — strong affinity for Google/YouTube branded casual wear.</p>
