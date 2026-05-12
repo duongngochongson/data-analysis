@@ -10,7 +10,6 @@
   --grad-sql: linear-gradient(135deg,#0a2540 0%,#1e4d8c 100%);
   --grad-python: linear-gradient(135deg,#3d2e0a 0%,#806014 100%);
   --grad-pbi: linear-gradient(135deg,#3d1f0f 0%,#8a3d1a 100%);
-  --grad-ml: linear-gradient(135deg,#0f3320 0%,#1e6638 100%);
   --grad-contact: linear-gradient(135deg,#3d0f2a 0%,#7a1e54 100%);
 }
 * { box-sizing: border-box; }
@@ -41,7 +40,6 @@ body {
 .tile-sql { background: var(--grad-sql); }
 .tile-python { background: var(--grad-python); }
 .tile-powerbi { background: var(--grad-pbi); }
-.tile-ml { background: var(--grad-ml); }
 
 /* ABOUT */
 .tile-about { padding: 22px 26px; justify-content: center; }
