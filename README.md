@@ -1,6 +1,6 @@
 # Data Analysis Portfolio
 
-Personal projects covering SQL, Python, Power BI, and Machine Learning.
+Personal projects covering SQL, Python, and Power BI.
 
 **Live site:** https://duongngochongson.github.io/data-analysis/
 
@@ -11,7 +11,6 @@ Personal projects covering SQL, Python, Power BI, and Machine Learning.
 | eCommerce User Behavior Exploration | SQL · BigQuery |
 | Retailer RFM Segmentation | Python · Pandas |
 | Purchasing Department Performance | Power BI · DAX |
-| Customer Churn Prediction & Segmentation | Machine Learning · Python |
 
 ## Contact
 
