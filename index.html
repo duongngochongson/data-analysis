@@ -259,11 +259,11 @@ ORDER BY quantity DESC;</code></pre>
           <thead><tr><th>Other purchased products</th><th>Qty</th></tr></thead>
           <tbody>
             <tr><td>Google Sunglasses</td><td>20</td></tr>
-            <tr><td>Google Women's Vintage Hero Tee</td><td>7</td></tr>
+            <tr><td>Google Women’s Vintage Hero Tee</td><td>7</td></tr>
             <tr><td>SPF-15 Slim &amp; Slender Lip Balm</td><td>6</td></tr>
-            <tr><td>Google Women's Short Sleeve Hero Tee</td><td>4</td></tr>
-            <tr><td>YouTube Men's Fleece Hoodie Black</td><td>3</td></tr>
-            <tr><td>Google Men's Short Sleeve Badge Tee</td><td>3</td></tr>
+            <tr><td>Google Women’s Short Sleeve Hero Tee</td><td>4</td></tr>
+            <tr><td>YouTube Men’s Fleece Hoodie Black</td><td>3</td></tr>
+            <tr><td>Google Men’s Short Sleeve Badge Tee</td><td>3</td></tr>
           </tbody>
         </table>
         <p>✅ Customers who bought the Henley favored Google Sunglasses, highlighting strong interest in casual Google/YouTube branded accessories.</p>
@@ -358,7 +358,7 @@ import squarify</code></pre>
         <pre><code>data_link = '1yNt8-kkoDyYzq8tYbqWRqqrAfyhPNtBlfSo-9aRvbCY'
 data = gc.open_by_key(data_link)
 
-order_info  = pd.DataFrame(data.worksheet('ecommerce retail').get_all_records())
+order_info   = pd.DataFrame(data.worksheet('ecommerce retail').get_all_records())
 segmentation = pd.DataFrame(data.worksheet('Segmentation').get_all_records())</code></pre>
         <h4>Prepare segmentation lookup</h4>
         <pre><code>segmentation.columns = ['segment', 'score']
@@ -433,11 +433,10 @@ rfm = customer_rfm.groupby('segment').agg(
 rfm['%_rvn'] = round((rfm['sum_rvn'] / rfm['sum_rvn'].sum()) * 100, 1)
 color = sns.color_palette("RdYlGn_r", len(rfm))
 
-# Bar charts: Avg Recency, Avg Frequency, % Revenue
 for col, title, ylabel in [
-    ('avg_r',  'Average Recency by Segment',   'Day(s)'),
-    ('avg_f',  'Average Frequency by Segment', 'Order Time(s)'),
-    ('%_rvn',  '% Revenue by Segment',         '% Revenue'),
+    ('avg_r', 'Average Recency by Segment',   'Day(s)'),
+    ('avg_f', 'Average Frequency by Segment', 'Order Time(s)'),
+    ('%_rvn', '% Revenue by Segment',         '% Revenue'),
 ]:
     rfm_s = rfm.sort_values(col, ascending=(col == 'avg_r'))
     plt.figure(figsize=(8, 5))
@@ -445,7 +444,6 @@ for col, title, ylabel in [
     plt.title(title); plt.xlabel('Segment'); plt.ylabel(ylabel)
     plt.xticks(rotation=45); plt.tight_layout(); plt.show()
 
-# Treemap: % Customers by Segment
 rfm_s = rfm.sort_values('%_ctm', ascending=False)
 labels = [f"{s}\n{v:.1f}%" for s, v in zip(rfm_s['segment'], rfm_s['%_ctm'])]
 plt.figure(figsize=(16, 6))
@@ -460,7 +458,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
 
         <h3>4 · Insights &amp; Recommendations</h3>
         <p>By end of 2011, SuperStore had a <em>mixed business situation</em>: strong segments (Champions, Loyal, Potential Loyalist) alongside weak ones (Hibernating, About to Sleep, At Risk, Lost). Champions made up <strong>19.2%</strong> of total customers; Hibernating <strong>15.9%</strong>.</p>
-        <p>Clear skewed averages across charts indicate a <em>significant gap</em> between strong and weak segments. The heavy reliance on Champions suggests issues in <em>turning new customers into loyal ones</em>. Prioritize <strong>Recency and Frequency</strong> over Monetary — loyal shoppers make many purchases at lower amounts throughout the year.</p>
+        <p>Clear skewed averages indicate a <em>significant gap</em> between strong and weak segments. Heavy reliance on Champions suggests issues in <em>turning new customers into loyal ones</em>. Prioritize <strong>Recency and Frequency</strong> over Monetary — loyal shoppers make many purchases at lower amounts throughout the year.</p>
 
         <h4>Segment Characteristics</h4>
         <table class="data">
@@ -489,7 +487,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
             <tr><td>Lost Customers</td><td>Recovery Campaign</td><td>Significant discounts or free gifts.</td></tr>
           </tbody>
         </table>
-        <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
+        <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/Portfolio/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
       </div>
     </div>
     <button class="mnav-arrow mnav-next" aria-label="Next">›</button>
@@ -534,7 +532,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
             <tr><th>Pains</th><td>Large amount of data to analyze; difficulty identifying what’s important.</td></tr>
             <tr><th>Thinking &amp; feeling</th><td>Worry about purchasing department effectiveness; opinions about vendor reliability.</td></tr>
             <tr><th>Seeing</th><td>Company purchasing overview and per-vendor info for comparison.</td></tr>
-            <tr><th>Saying &amp; doing</th><td>The overview dashboard gives the big picture; vendor detail gives in-depth analysis.</td></tr>
+            <tr><th>Saying &amp; doing</th><td>Overview dashboard gives the big picture; vendor detail gives in-depth analysis.</td></tr>
             <tr><th>Gains</th><td>See overview changes and vendor operating details to make the right choice.</td></tr>
           </tbody>
         </table>
@@ -562,7 +560,7 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
 
         <h3>Visual 1 · Vendor Performance Overview</h3>
         <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Vendor overview dashboard" loading="lazy" /></div>
-        <p>Pedals subcategory (2013–2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across 7 vendors. Reliability dipped to 71% in March 2014; costs spiked to 1.57M in July 2014. <strong>VendorID 1586</strong> leads at 78.72%; VendorID 1506 ranks second at 77.66% but not among top for low extra fees.</p>
+        <p>Pedals subcategory (2013–2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across 7 vendors. Reliability dipped to 71% in March 2014; costs spiked to 1.57M in July 2014. <strong>VendorID 1586</strong> leads at 78.72%; VendorID 1506 at 77.66% but not among top for low extra fees.</p>
 
         <h3>Visual 2 · Vendor Performance Detail</h3>
         <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/b93e0fe5-e5f6-458b-97a8-5b3db8691e75" alt="Vendor detail dashboard" loading="lazy" /></div>
@@ -572,8 +570,8 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <table class="data">
           <thead><tr><th>Action</th><th>Description</th></tr></thead>
           <tbody>
-            <tr><td>Review Summary</td><td>Overview tab: error-free rate, total cost, extra fees, active vendors — quick view of performance.</td></tr>
-            <tr><td>Analyze Trends</td><td>Spot reliability dips or cost spikes in time-series charts; vendor rankings highlight who needs attention.</td></tr>
+            <tr><td>Review Summary</td><td>Overview tab: error-free rate, total cost, extra fees, active vendors.</td></tr>
+            <tr><td>Analyze Trends</td><td>Spot reliability dips or cost spikes; vendor rankings highlight who needs attention.</td></tr>
             <tr><td>Select Vendor</td><td>Vendor tab: per-vendor metrics, trends, and comparisons.</td></tr>
             <tr><td>Examine Details</td><td>Product-level pricing, fees, taxes, and freight costs.</td></tr>
             <tr><td>Take Action</td><td>Generate reports and renegotiate contracts using insights.</td></tr>
@@ -603,11 +601,10 @@ plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <h2>Customer Churn Prediction &amp; Segmentation</h2>
         <p class="lede">Combine RFM segmentation with churn signals to target retention campaigns at the right customers.</p>
         <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify; scikit-learn for the modeling step. <strong>Technique:</strong> EDA, data transformations, aggregation; logistic regression and gradient boosting for churn prediction.</p>
-        <p><strong>Context:</strong> SuperStore wants to retain loyal customers and re-engage those at risk. Marketing needs a per-customer retention priority score, not a broad segment label.</p>
+        <p><strong>Context:</strong> SuperStore wants to retain loyal customers and re-engage those at risk. Marketing needs a per-customer retention priority score, not just a broad segment label.</p>
 
         <h3>1 · Data Cleaning</h3>
-        <pre><code># Import
-import pandas as pd, numpy as np
+        <pre><code>import pandas as pd, numpy as np
 import matplotlib.pyplot as plt, seaborn as sns, squarify
 
 # Drop duplicates &amp; cancelled orders
@@ -615,7 +612,7 @@ order_info = order_info.drop_duplicates()
 order_info = order_info[~order_info['InvoiceNo'].astype(str).str.startswith('C')]
 order_info = order_info[order_info['InvoiceNo'].apply(lambda x: isinstance(x, int))]
 
-# Keep valid rows
+# Keep only valid rows
 order_info = order_info[
     (order_info['Quantity'] &gt; 0) &amp;
     (order_info['CustomerID'] != '') &amp;
@@ -641,7 +638,7 @@ customer_rfm['recency'] = (
 ).dt.days
 
 # Quintile scoring (R inverted)
-customer_rfm['r_rank'] = 6 - (pd.qcut(customer_rfm['recency'].rank(method='first'),  5, labels=False) + 1)
+customer_rfm['r_rank'] = 6 - (pd.qcut(customer_rfm['recency'].rank(method='first'), 5, labels=False) + 1)
 customer_rfm['f_rank'] = pd.qcut(customer_rfm['frequency'].rank(method='first'), 5, labels=False) + 1
 customer_rfm['m_rank'] = pd.qcut(customer_rfm['monetory'].rank(method='first'),  5, labels=False) + 1
 customer_rfm['score']  = customer_rfm[['r_rank','f_rank','m_rank']].astype(str).agg(''.join, axis=1)
@@ -649,7 +646,7 @@ customer_rfm['score']  = customer_rfm[['r_rank','f_rank','m_rank']].astype(str).
 customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')</code></pre>
 
         <h3>3 · From Segmentation to Churn Prediction</h3>
-        <p>The next step adds a binary churn label (<em>churned</em> = no purchase in N days) and engineers features: R, F, M values, customer tenure, category mix, and average order gap. A logistic regression baseline is trained first, then gradient boosting for lift. Output: churn probability per customer, combined with the segment label to rank retention priority.</p>
+        <p>The next step adds a binary churn label (<em>churned</em> = no purchase in N days) and engineers features: R, F, M values, customer tenure, category mix, and average order gap. A logistic regression baseline is trained first, then gradient boosting for lift. Output: churn probability per customer, combined with segment label to rank retention priority.</p>
 
         <h3>4 · Visualization</h3>
         <div class="gallery">
@@ -689,7 +686,7 @@ customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')</code><
             <tr><td>Lost Customers</td><td>Recovery Campaign</td><td>Significant discounts or free gifts.</td></tr>
           </tbody>
         </table>
-        <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View segmentation notebook</a></p>
+        <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/Portfolio/projects/RFM.ipynb" target="_blank" rel="noopener">View segmentation notebook</a></p>
       </div>
     </div>
     <button class="mnav-arrow mnav-next" aria-label="Next">›</button>
