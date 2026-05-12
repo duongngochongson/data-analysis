@@ -1,25 +1,30 @@
-# Data Analyst Portfolio
+# Portfolio · duongngochongson
 
-Apple-style bento portfolio site for the projects of **Duong Ngoc Hong Son**.
+Data analyst portfolio site — Apple-inspired dark bento layout, vanilla HTML/CSS/JS, no build step.
 
-## Stack
-- Vanilla HTML / CSS / JS — no build step
-- CSS Grid bento layout
-- Native `<dialog>` modals
-- Inter via Google Fonts
+**Live:** https://duongngochongson.github.io/store/
 
-## Local preview
-```bash
-python3 -m http.server 8000
-# open http://localhost:8000
+## Projects
+
+| Project | Tool | File |
+|---|---|---|
+| eCommerce User Behavior Exploration | SQL · BigQuery | [`Explore Ecommerce Dataset.sql`](projects/Explore%20Ecommerce%20Dataset.sql) |
+| Retailer RFM Segmentation | Python · Pandas | [`RFM.ipynb`](projects/RFM.ipynb) |
+| Purchasing Department Performance | Power BI · DAX | [`Purchasing Vendor Performance.pbix`](projects/Purchasing%20Vendor%20Performance.pbix) |
+| Customer Churn &amp; Segmentation | Machine Learning · Python | Foundation in [`RFM.ipynb`](projects/RFM.ipynb) |
+
+## Structure
+
+```
+.
+├── index.html              # Main page
+├── assets/
+│   ├── css/style.css       # Dark Apple-style design
+│   ├── js/main.js          # Modal nav + IntersectionObserver
+│   └── images/             # Chart and dashboard screenshots
+└── projects/               # Raw deliverables (.sql / .ipynb / .pbix)
 ```
 
-## Deploy (GitHub Pages)
-1. Settings → Pages → Source: `main` branch, `/ (root)`
-2. Or rename repo to `duongngochongson.github.io` for root domain.
+## Deploy
 
-## Project sections
-- SQL · eCommerce User Behavior Exploration (BigQuery)
-- Python · Retailer RFM Segmentation (Pandas)
-- Power BI · Purchasing Department Performance (DAX)
-- ML · Customer Churn Prediction & Segmentation
+GitHub Pages from the `Portfolio` branch.
