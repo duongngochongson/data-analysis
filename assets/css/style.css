@@ -46,7 +46,8 @@ body {
 .toolkit-row { display: flex; align-items: center; justify-content: space-evenly; width: 100%; gap: 10px; }
 .tile-about h2 { font-size: 19px; margin: 0; letter-spacing: -0.02em; font-weight: 700; color: var(--ink); white-space: nowrap; }
 .chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-.chips li { background: rgba(255,255,255,0.08); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--ink); font-weight: 500; }
+.chips li { background: rgba(255,255,255,0.08); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--ink); font-weight: 500; transition: transform .25s cubic-bezier(.2,.7,.2,1), background .25s, box-shadow .25s; box-shadow: 0 2px 8px rgba(0,0,0,0.22); }
+.chips li:hover { transform: translateY(-2px) scale(1.06); background: rgba(255,255,255,0.16); box-shadow: 0 6px 18px rgba(0,0,0,0.32); }
 
 /* CONTACT */
 .tile-contact { background: var(--grad-contact); padding: 22px 26px; justify-content: center; grid-column: span 3; }
