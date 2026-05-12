@@ -12,7 +12,7 @@ Personal projects covering SQL, Python, and Power BI.
 | Retailer RFM Segmentation | Python · Pandas |
 | Purchasing Department Performance | Power BI · DAX |
 
-## Contact
+## Let's talk
 
 - GitHub: [duongngochongson](https://github.com/duongngochongson)
 - LinkedIn: [duongngochongson](https://www.linkedin.com/in/duongngochongson/)
