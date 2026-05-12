@@ -100,152 +100,205 @@
       <button class="modal-close" aria-label="Close">✕</button>
       <div class="modal-inner">
         <span class="eyebrow">SQL · BigQuery</span>
-        <h2>SQL eCommerce User Behavior Exploration</h2>
+        <h2>SQL Explore eCommerce Dataset</h2>
         <p class="lede">Analyzing user engagement and revenue trends on the Google Analytics public dataset in BigQuery.</p>
-        <p><strong>Main Techniques:</strong> Window functions, CTEs, <code>UNNEST</code> on nested <code>hits</code> and <code>product</code> arrays.</p>
+        <p><strong>Approach &amp; Platform:</strong> Explore a public dataset of Google Analytics in BigQuery. <strong>Main Techniques:</strong> Window functions, CTEs, <code>UNNEST</code> on nested <code>hits</code> and <code>product</code> arrays.</p>
+        <p><strong>Result:</strong> Extract key insights, such as engagement rates and revenue performance over time.</p>
 
         <h3>Query 01 · Total visits, pageviews, transactions (Jan–Mar 2017)</h3>
         <pre><code>SELECT
-  FORMAT_DATE("%b-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
-  SUM(totals.visits)       AS number_of_visit,
-  SUM(totals.pageviews)    AS number_of_pageview,
-  SUM(totals.transactions) AS number_of_transaction
+    FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
+    SUM(totals.visits)       AS number_of_visit,
+    SUM(totals.pageviews)    AS number_of_pageview,
+    SUM(totals.transactions) AS number_of_transaction
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`
 WHERE _table_suffix BETWEEN '0101' AND '0331'
 GROUP BY month;</code></pre>
-        <p>March 2017 had the most transactions (993); January had the highest visits (64,694).</p>
+        <table class="data">
+          <thead><tr><th>Month</th><th>Visits</th><th>Pageviews</th><th>Transactions</th></tr></thead>
+          <tbody>
+            <tr><td>01-2017</td><td>64,694</td><td>257,708</td><td>713</td></tr>
+            <tr><td>02-2017</td><td>62,192</td><td>233,373</td><td>733</td></tr>
+            <tr><td>03-2017</td><td>69,931</td><td>259,522</td><td>993</td></tr>
+          </tbody>
+        </table>
+        <p>✅ March 2017 had the most transactions; January 2017 had the highest visits.</p>
 
         <h3>Query 02 · Bounce rate per traffic source (Jul 2017)</h3>
         <pre><code>SELECT
-  trafficSource.source,
-  COUNT(visitNumber)                                        AS total_visits,
-  SUM(totals.bounces)                                       AS total_bounces,
-  ROUND(SUM(totals.bounces)/COUNT(visitNumber)*100, 2)      AS bounce_rate
+    trafficSource.source,
+    COUNT(visitNumber)                                       AS total_visits,
+    SUM(totals.bounces)                                      AS total_no_of_bounces,
+    ROUND(SUM(totals.bounces) / COUNT(visitNumber) * 100, 2) AS bounce_percent
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`
 GROUP BY trafficSource.source
 ORDER BY total_visits DESC;</code></pre>
-        <p>Google led in visits (38,400). YouTube.com and m.facebook.com had the highest bounce rates at 66.73% and 64.28%.</p>
+        <table class="data">
+          <thead><tr><th>Source</th><th>Visits</th><th>Bounces</th><th>Bounce rate</th></tr></thead>
+          <tbody>
+            <tr><td>google</td><td>38,400</td><td>19,798</td><td>51.56%</td></tr>
+            <tr><td>(direct)</td><td>19,891</td><td>8,606</td><td>43.27%</td></tr>
+            <tr><td>youtube.com</td><td>6,351</td><td>4,238</td><td>66.73%</td></tr>
+            <tr><td>analytics.google.com</td><td>1,972</td><td>1,064</td><td>53.96%</td></tr>
+            <tr><td>m.facebook.com</td><td>669</td><td>430</td><td>64.28%</td></tr>
+          </tbody>
+        </table>
+        <p>✅ Google had the highest visits; YouTube and Facebook had the highest bounce rates.</p>
 
         <h3>Query 03 · Revenue by traffic source, weekly &amp; monthly (Jun 2017)</h3>
         <pre><code>WITH monthly_revenue AS (
-  SELECT "month" AS time_type,
-    FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS time,
-    trafficSource.source AS source,
-    ROUND(SUM(product.productRevenue/1000000), 2)    AS revenue
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201706*`,
-    UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-  WHERE product.productRevenue IS NOT NULL
-  GROUP BY time_type, time, source
+    SELECT "month" AS time_type,
+        FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS time,
+        trafficSource.source AS source,
+        ROUND(SUM(product.productRevenue / 1000000), 2) AS revenue
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201706*`,
+        UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+    WHERE product.productRevenue IS NOT NULL
+    GROUP BY time_type, time, source
 ),
 weekly_revenue AS (
-  SELECT "week" AS time_type,
-    FORMAT_DATE("%W-%Y", PARSE_DATE("%Y%m%d", date)) AS time,
-    trafficSource.source AS source,
-    ROUND(SUM(product.productRevenue)/1000000, 2)    AS revenue
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201706*`,
-    UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-  WHERE product.productRevenue IS NOT NULL
-  GROUP BY time_type, time, source
+    SELECT "week" AS time_type,
+        FORMAT_DATE("%W-%Y", PARSE_DATE("%Y%m%d", date)) AS time,
+        trafficSource.source AS source,
+        ROUND(SUM(product.productRevenue) / 1000000, 2) AS revenue
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201706*`,
+        UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+    WHERE product.productRevenue IS NOT NULL
+    GROUP BY time_type, time, source
 )
 SELECT * FROM monthly_revenue
 UNION ALL SELECT * FROM weekly_revenue
 ORDER BY revenue DESC;</code></pre>
-        <p>Direct traffic dominated June 2017 with ~$97k monthly revenue, far ahead of Google ($18.7k) and DFA ($8.8k).</p>
+        <table class="data">
+          <thead><tr><th>Type</th><th>Time</th><th>Source</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Month</td><td>06-2017</td><td>(direct)</td><td>$97,333.62</td></tr>
+            <tr><td>Week</td><td>24-2017</td><td>(direct)</td><td>$30,908.91</td></tr>
+            <tr><td>Week</td><td>25-2017</td><td>(direct)</td><td>$27,295.32</td></tr>
+            <tr><td>Month</td><td>06-2017</td><td>google</td><td>$18,757.18</td></tr>
+            <tr><td>Month</td><td>06-2017</td><td>dfa</td><td>$8,862.23</td></tr>
+          </tbody>
+        </table>
+        <p>✅ Direct traffic dominated June 2017 with ~$97k monthly revenue, far ahead of Google ($18.7k).</p>
 
         <h3>Query 04 · Avg pageviews: purchasers vs non-purchasers (Jun–Jul 2017)</h3>
         <pre><code>WITH purchase_data AS (
-  SELECT FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
-    ROUND(SUM(totals.pageviews)/COUNT(DISTINCT fullVisitorId), 2) AS avg_pageviews_purchase
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
-    UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-  WHERE totals.transactions IS NOT NULL AND product.productRevenue IS NOT NULL
-    AND _table_suffix BETWEEN '0601' AND '0731'
-  GROUP BY month
+    SELECT FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
+        ROUND(SUM(totals.pageviews) / COUNT(DISTINCT fullVisitorId), 2) AS avg_pageviews_purchase
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
+        UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+    WHERE totals.transactions IS NOT NULL AND product.productRevenue IS NOT NULL
+        AND _table_suffix BETWEEN '0601' AND '0731'
+    GROUP BY month
 ),
 non_purchase_data AS (
-  SELECT FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
-    ROUND(SUM(totals.pageviews)/COUNT(DISTINCT fullVisitorId), 2) AS avg_pageviews_non_purchase
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
-    UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-  WHERE totals.transactions IS NULL AND product.productRevenue IS NULL
-    AND _table_suffix BETWEEN '0601' AND '0731'
-  GROUP BY month
+    SELECT FORMAT_DATE("%m-%Y", PARSE_DATE("%Y%m%d", date)) AS month,
+        ROUND(SUM(totals.pageviews) / COUNT(DISTINCT fullVisitorId), 2) AS avg_pageviews_non_purchase
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
+        UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+    WHERE totals.transactions IS NULL AND product.productRevenue IS NULL
+        AND _table_suffix BETWEEN '0601' AND '0731'
+    GROUP BY month
 )
 SELECT p.month, p.avg_pageviews_purchase, n.avg_pageviews_non_purchase
 FROM purchase_data p
 FULL OUTER JOIN non_purchase_data n USING (month)
 ORDER BY p.month;</code></pre>
-        <p>Purchasers viewed significantly more pages than non-purchasers in both months; July had slightly higher averages than June.</p>
+        <p>✅ Purchasers viewed significantly more pages than non-purchasers; July had slightly higher averages than June.</p>
 
         <h3>Query 05 · Avg transactions per purchasing user (Jul 2017)</h3>
         <pre><code>SELECT
-  "201707" AS month,
-  ROUND(SUM(totals.transactions)/COUNT(DISTINCT fullVisitorId), 2)
-    AS avg_total_transactions_per_user
+    "201707" AS Month,
+    ROUND(SUM(totals.transactions) / COUNT(DISTINCT fullVisitorId), 2)
+        AS Avg_total_transactions_per_user
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
-  UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-WHERE totals.transactions &gt;= 1 AND product.productRevenue IS NOT NULL;</code></pre>
-        <p>Purchasing users averaged <strong>4.16</strong> transactions in July 2017.</p>
+    UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+WHERE totals.transactions &gt;= 1
+    AND product.productRevenue IS NOT NULL;</code></pre>
+        <table class="data">
+          <thead><tr><th>Month</th><th>Avg transactions / user</th></tr></thead>
+          <tbody><tr><td>201707</td><td>4.16</td></tr></tbody>
+        </table>
 
         <h3>Query 06 · Avg revenue per session for purchasers (Jul 2017)</h3>
         <pre><code>SELECT
-  FORMAT_DATE('%Y-%m', PARSE_DATE('%Y%m%d', date)) AS month,
-  ROUND((SUM(product.productRevenue)/SUM(totals.visits))/1000000, 2)
-    AS avg_revenue_by_user_per_visit
+    FORMAT_DATE('%Y-%m', PARSE_DATE('%Y%m%d', date)) AS month,
+    ROUND((SUM(product.productRevenue) / SUM(totals.visits)) / 1000000, 2)
+        AS Avg_revenue_by_user_per_visit
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
-  UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-WHERE product.productRevenue IS NOT NULL AND totals.transactions IS NOT NULL
-GROUP BY month;</code></pre>
-        <p>Average revenue per session reached <strong>$43.86</strong> in July 2017.</p>
-
-        <h3>Query 07 · Cross-sell from "YouTube Men's Vintage Henley" (Jul 2017)</h3>
-        <pre><code>WITH henley_buyers AS (
-  SELECT DISTINCT fullVisitorId
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
     UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-  WHERE product.v2ProductName = "YouTube Men's Vintage Henley"
-    AND totals.transactions &gt;= 1 AND product.productRevenue IS NOT NULL
+WHERE product.productRevenue IS NOT NULL
+    AND totals.transactions IS NOT NULL
+GROUP BY month;</code></pre>
+        <table class="data">
+          <thead><tr><th>Month</th><th>Avg revenue / session</th></tr></thead>
+          <tbody><tr><td>2017-07</td><td>$43.86</td></tr></tbody>
+        </table>
+
+        <h3>Query 07 · Cross-sell from “YouTube Men’s Vintage Henley” (Jul 2017)</h3>
+        <pre><code>WITH henley_cust_id AS (
+    SELECT DISTINCT fullVisitorId
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
+        UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+    WHERE product.v2ProductName = "YouTube Men's Vintage Henley"
+        AND totals.transactions &gt;= 1
+        AND product.productRevenue IS NOT NULL
 )
 SELECT
-  product.v2ProductName AS other_purchased_products,
-  SUM(product.productQuantity) AS quantity
+    product.v2ProductName AS other_purchased_products,
+    SUM(product.productQuantity) AS quantity
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
-  UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-WHERE fullVisitorId IN (SELECT * FROM henley_buyers)
-  AND product.v2ProductName &lt;&gt; "YouTube Men's Vintage Henley"
-  AND totals.transactions &gt;= 1 AND product.productRevenue IS NOT NULL
+    UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+WHERE fullVisitorId IN (SELECT * FROM henley_cust_id)
+    AND product.v2ProductName &lt;&gt; "YouTube Men's Vintage Henley"
+    AND totals.transactions &gt;= 1
+    AND product.productRevenue IS NOT NULL
 GROUP BY product.v2ProductName
 ORDER BY quantity DESC;</code></pre>
-        <p>Top cross-sells: Google Sunglasses (20 units), Women's Vintage Hero Tee (7), SPF-15 Lip Balm (6) — strong affinity for Google/YouTube branded casual wear.</p>
+        <table class="data">
+          <thead><tr><th>Other purchased products</th><th>Qty</th></tr></thead>
+          <tbody>
+            <tr><td>Google Sunglasses</td><td>20</td></tr>
+            <tr><td>Google Women's Vintage Hero Tee</td><td>7</td></tr>
+            <tr><td>SPF-15 Slim &amp; Slender Lip Balm</td><td>6</td></tr>
+            <tr><td>Google Women's Short Sleeve Hero Tee</td><td>4</td></tr>
+            <tr><td>YouTube Men's Fleece Hoodie Black</td><td>3</td></tr>
+            <tr><td>Google Men's Short Sleeve Badge Tee</td><td>3</td></tr>
+          </tbody>
+        </table>
+        <p>✅ Customers who bought the Henley favored Google Sunglasses, highlighting strong interest in casual Google/YouTube branded accessories.</p>
 
         <h3>Query 08 · Cohort funnel: view → cart → purchase (Q1 2017)</h3>
         <pre><code>WITH productview AS (
-  SELECT FORMAT_DATE("%Y%m", PARSE_DATE("%Y%m%d", date)) AS month,
-    COUNT(eCommerceAction.action_type) AS num_product_view
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`, UNNEST(hits) AS hits
-  WHERE _table_suffix BETWEEN '0101' AND '0331' AND eCommerceAction.action_type = '2'
-  GROUP BY month
+    SELECT FORMAT_DATE("%Y%m", PARSE_DATE("%Y%m%d", date)) AS month,
+        COUNT(eCommerceAction.action_type) AS num_product_view
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`, UNNEST(hits) AS hits
+    WHERE _table_suffix BETWEEN '0101' AND '0331'
+        AND eCommerceAction.action_type = '2'
+    GROUP BY month
 ),
 cart AS (
-  SELECT FORMAT_DATE("%Y%m", PARSE_DATE("%Y%m%d", date)) AS month,
-    COUNT(eCommerceAction.action_type) AS num_addtocart
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`, UNNEST(hits) AS hits
-  WHERE _table_suffix BETWEEN '0101' AND '0331' AND eCommerceAction.action_type = '3'
-  GROUP BY month
+    SELECT FORMAT_DATE("%Y%m", PARSE_DATE("%Y%m%d", date)) AS month,
+        COUNT(eCommerceAction.action_type) AS num_addtocart
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`, UNNEST(hits) AS hits
+    WHERE _table_suffix BETWEEN '0101' AND '0331'
+        AND eCommerceAction.action_type = '3'
+    GROUP BY month
 ),
 purchase AS (
-  SELECT FORMAT_DATE("%Y%m", PARSE_DATE("%Y%m%d", date)) AS month,
-    COUNT(eCommerceAction.action_type) AS num_purchase
-  FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
-    UNNEST(hits) AS hits, UNNEST(hits.product) AS product
-  WHERE _table_suffix BETWEEN '0101' AND '0331'
-    AND eCommerceAction.action_type = '6'
-    AND product.productRevenue IS NOT NULL AND totals.transactions IS NOT NULL
-  GROUP BY month
+    SELECT FORMAT_DATE("%Y%m", PARSE_DATE("%Y%m%d", date)) AS month,
+        COUNT(eCommerceAction.action_type) AS num_purchase
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*`,
+        UNNEST(hits) AS hits, UNNEST(hits.product) AS product
+    WHERE _table_suffix BETWEEN '0101' AND '0331'
+        AND eCommerceAction.action_type = '6'
+        AND product.productRevenue IS NOT NULL
+        AND totals.transactions IS NOT NULL
+    GROUP BY month
 )
 SELECT month, num_product_view, num_addtocart, num_purchase,
-  ROUND(num_addtocart/num_product_view*100, 2) AS add_to_cart_rate,
-  ROUND(num_purchase/num_product_view*100,  2) AS purchase_rate
+    ROUND(num_addtocart / num_product_view * 100, 2) AS add_to_cart_rate,
+    ROUND(num_purchase  / num_product_view * 100, 2) AS purchase_rate
 FROM productview JOIN cart USING (month) JOIN purchase USING (month)
 ORDER BY month;</code></pre>
         <table class="data">
@@ -256,7 +309,7 @@ ORDER BY month;</code></pre>
             <tr><td>201703</td><td>23,549</td><td>8,782</td><td>2,977</td><td>37.29%</td><td>12.64%</td></tr>
           </tbody>
         </table>
-        <p>March 2017 peaked at 12.64% purchase rate. The upward trend across all three months signals improving funnel health quarter-over-quarter.</p>
+        <p>✅ March 2017 peaked at 12.64% purchase rate; upward trend across all three months signals improving funnel health.</p>
         <p class="modal-actions"><a class="btn" href="projects/sql-ecommerce/Explore%20Ecommerce%20Dataset.sql" target="_blank" rel="noopener">View .sql file</a></p>
       </div>
     </div>
@@ -278,31 +331,126 @@ ORDER BY month;</code></pre>
       <button class="modal-close" aria-label="Close">✕</button>
       <div class="modal-inner">
         <span class="eyebrow">Python · Pandas</span>
-        <h2>Retailer RFM Segmentation</h2>
+        <h2>Python RFM Model Analysis</h2>
         <p class="lede">Segment SuperStore customers by Recency, Frequency, and Monetary value to power targeted marketing campaigns.</p>
-        <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify.</p>
-        <p><strong>Context:</strong> SuperStore, a global retailer, needs to segment its large customer base for campaign personalization. The RFM model scores each customer on three dimensions: <em>how recently</em> they bought, <em>how often</em>, and <em>how much</em> they spent.</p>
+        <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify. <strong>Technique:</strong> EDA, data transformations, aggregation and grouping.</p>
+        <p><strong>Context:</strong> SuperStore, a global retail company, seeks to segment its large customer base for marketing campaigns. The RFM model scores each customer on three dimensions: <em>how recently</em> they bought, <em>how often</em>, and <em>how much</em> they spent.</p>
 
-        <h3>Data Cleaning</h3>
-        <ul>
-          <li>Drop duplicate rows.</li>
-          <li>Remove cancelled orders (<code>InvoiceNo</code> starting with <code>C</code>).</li>
-          <li>Drop bad-debt adjustment rows where <code>InvoiceNo</code> is not an integer.</li>
-          <li>Keep only rows with <code>Quantity &gt; 0</code>, <code>UnitPrice &gt; 0</code>, and non-empty <code>CustomerID</code>.</li>
-          <li>Parse <code>InvoiceDate</code> to datetime, extract <code>Date</code> column.</li>
-        </ul>
+        <h3>1 · Data Cleaning</h3>
+        <p>The dataset has two tables: transaction information (many-to-one: each order ID → multiple product IDs) and a segmentation lookup table.</p>
+        <h4>Import libraries</h4>
+        <pre><code>!pip install squarify
 
-        <h3>RFM Pipeline</h3>
-        <ol>
-          <li>Compute <code>revenue = quantity × price</code>.</li>
-          <li>Aggregate per customer: last purchase date, unique invoice count, total revenue.</li>
-          <li>Recency = days from 31/12/2011 to last purchase.</li>
-          <li>Score R, F, M each 1–5 with <code>pd.qcut</code> quintiles (R inverted: lower recency = higher score).</li>
-          <li>Concatenate to a 3-digit score, merge with segmentation lookup table.</li>
-          <li>Aggregate segments: customer count, avg R, avg F, total revenue.</li>
-        </ol>
+from google.colab import auth
+auth.authenticate_user()
 
-        <h3>Visualization</h3>
+import gspread
+from google.auth import default
+creds, _ = default()
+gc = gspread.authorize(creds)
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import squarify</code></pre>
+        <h4>Import data</h4>
+        <pre><code>data_link = '1yNt8-kkoDyYzq8tYbqWRqqrAfyhPNtBlfSo-9aRvbCY'
+data = gc.open_by_key(data_link)
+
+order_info  = pd.DataFrame(data.worksheet('ecommerce retail').get_all_records())
+segmentation = pd.DataFrame(data.worksheet('Segmentation').get_all_records())</code></pre>
+        <h4>Prepare segmentation lookup</h4>
+        <pre><code>segmentation.columns = ['segment', 'score']
+segmentation['score'] = segmentation['score'].str.split(',')
+segmentation = segmentation.explode('score')
+segmentation['score'] = segmentation['score'].str.strip()</code></pre>
+        <h4>Clean order info</h4>
+        <pre><code># Drop duplicates
+order_info = order_info.drop_duplicates()
+
+# Drop cancelled orders (InvoiceNo starts with 'C')
+order_info = order_info[~order_info['InvoiceNo'].astype(str).str.startswith('C')]
+
+# Remove bad-debt rows where InvoiceNo is not int
+order_info = order_info[order_info['InvoiceNo'].apply(lambda x: isinstance(x, int))]
+
+# Keep only valid rows
+order_info = order_info[
+    (order_info['Quantity'] &gt; 0) &amp;
+    (order_info['CustomerID'] != '') &amp;
+    (order_info['UnitPrice'] &gt; 0)
+]
+
+# Parse dates
+order_info['InvoiceDate'] = pd.to_datetime(order_info['InvoiceDate'],
+                                            format='%m/%d/%y %H:%M', errors='coerce')
+order_info['Date'] = order_info['InvoiceDate'].dt.date.astype('datetime64[ns]')
+order_info = order_info.drop(columns=['InvoiceDate'])
+
+# Rename columns
+order_info = order_info.rename(columns={
+    'InvoiceNo': 'invoiceid', 'StockCode': 'stockcode',
+    'Description': 'description', 'Quantity': 'quantity',
+    'UnitPrice': 'price', 'CustomerID': 'customerid',
+    'Country': 'country', 'Date': 'date'
+})</code></pre>
+
+        <h3>2 · RFM Segmentation</h3>
+        <pre><code># Revenue column
+order_info['revenue'] = order_info['quantity'] * order_info['price']
+
+# Aggregate per customer
+customer_rfm = order_info.groupby('customerid').agg(
+    {'date': 'max', 'invoiceid': 'nunique', 'revenue': 'sum'}
+).reset_index()
+
+# Recency = days from 31/12/2011 to last purchase
+customer_rfm['date'] = (
+    pd.to_datetime('31/12/2011', format='%d/%m/%Y') - customer_rfm['date']
+).dt.days
+customer_rfm.columns = ['customerid', 'recency', 'frequency', 'monetory']
+
+# Score 1–5 with quintiles (R inverted: lower recency = higher score)
+customer_rfm['r_rank'] = 6 - (pd.qcut(customer_rfm['recency'].rank(method='first'), 5, labels=False) + 1)
+customer_rfm['f_rank'] = pd.qcut(customer_rfm['frequency'].rank(method='first'), 5, labels=False) + 1
+customer_rfm['m_rank'] = pd.qcut(customer_rfm['monetory'].rank(method='first'),  5, labels=False) + 1
+
+# 3-digit score string, merge with segment lookup
+customer_rfm['score'] = customer_rfm['r_rank'].astype(str) + customer_rfm['f_rank'].astype(str) + customer_rfm['m_rank'].astype(str)
+customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')
+
+# Aggregate by segment
+rfm = customer_rfm.groupby('segment').agg(
+    num_ctm=('customerid', 'count'),
+    avg_r=('recency',  'mean'),
+    avg_f=('frequency','mean'),
+    sum_rvn=('monetory','sum')
+).round(1).reset_index()</code></pre>
+
+        <h3>3 · Visualization</h3>
+        <pre><code>rfm['%_ctm'] = round((rfm['num_ctm'] / rfm['num_ctm'].sum()) * 100, 1)
+rfm['%_rvn'] = round((rfm['sum_rvn'] / rfm['sum_rvn'].sum()) * 100, 1)
+color = sns.color_palette("RdYlGn_r", len(rfm))
+
+# Bar charts: Avg Recency, Avg Frequency, % Revenue
+for col, title, ylabel in [
+    ('avg_r',  'Average Recency by Segment',   'Day(s)'),
+    ('avg_f',  'Average Frequency by Segment', 'Order Time(s)'),
+    ('%_rvn',  '% Revenue by Segment',         '% Revenue'),
+]:
+    rfm_s = rfm.sort_values(col, ascending=(col == 'avg_r'))
+    plt.figure(figsize=(8, 5))
+    sns.barplot(x=rfm_s['segment'], y=rfm_s[col], palette=color)
+    plt.title(title); plt.xlabel('Segment'); plt.ylabel(ylabel)
+    plt.xticks(rotation=45); plt.tight_layout(); plt.show()
+
+# Treemap: % Customers by Segment
+rfm_s = rfm.sort_values('%_ctm', ascending=False)
+labels = [f"{s}\n{v:.1f}%" for s, v in zip(rfm_s['segment'], rfm_s['%_ctm'])]
+plt.figure(figsize=(16, 6))
+squarify.plot(sizes=rfm_s['%_ctm'], label=labels, color=color, alpha=0.8)
+plt.title('% of Customers by Segment'); plt.axis('off'); plt.show()</code></pre>
         <div class="gallery">
           <img src="https://github.com/user-attachments/assets/ffee588b-8aa9-4ad2-871e-528c05393576" alt="Avg recency by segment" loading="lazy" />
           <img src="https://github.com/user-attachments/assets/9f8a65b2-37fd-4356-82be-7946a4d606b7" alt="Avg frequency by segment" loading="lazy" />
@@ -310,20 +458,35 @@ ORDER BY month;</code></pre>
           <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="% customers treemap" loading="lazy" />
         </div>
 
-        <h3>Insights &amp; Recommendations</h3>
-        <p>Champions (19.2%) and Hibernating (15.9%) are the two largest groups — a wide gap between the best and most-disengaged customers. SuperStore over-relies on Champions, suggesting friction in converting new buyers to loyal ones. Prioritize <strong>Recency and Frequency</strong> over Monetary: loyal customers tend to buy often at smaller amounts.</p>
+        <h3>4 · Insights &amp; Recommendations</h3>
+        <p>By end of 2011, SuperStore had a <em>mixed business situation</em>: strong segments (Champions, Loyal, Potential Loyalist) alongside weak ones (Hibernating, About to Sleep, At Risk, Lost). Champions made up <strong>19.2%</strong> of total customers; Hibernating <strong>15.9%</strong>.</p>
+        <p>Clear skewed averages across charts indicate a <em>significant gap</em> between strong and weak segments. The heavy reliance on Champions suggests issues in <em>turning new customers into loyal ones</em>. Prioritize <strong>Recency and Frequency</strong> over Monetary — loyal shoppers make many purchases at lower amounts throughout the year.</p>
 
-        <h4>Segments &amp; Campaigns</h4>
+        <h4>Segment Characteristics</h4>
+        <table class="data">
+          <thead><tr><th>Segment</th><th>Characteristics &amp; RFM Scores</th></tr></thead>
+          <tbody>
+            <tr><td>Champions</td><td>Highly engaged and valuable<br><small>555, 554, 544, 545, 454, 455, 445</small></td></tr>
+            <tr><td>Loyal</td><td>Regularly purchases; strong retention<br><small>543, 444, 435, 355, 354, 345, 344, 335</small></td></tr>
+            <tr><td>Potential Loyalist</td><td>Engaging but not fully committed<br><small>553, 551, 552, 541, 542, 533, 532, 531, 452, 451, 442, 441, 431, 453, 433, 432, 423, 353, 352, 351, 342, 341, 333, 323</small></td></tr>
+            <tr><td>Hibernating</td><td>Inactive but may return with effort<br><small>332, 322, 233, 232, 223, 222, 132, 123, 122, 212, 211</small></td></tr>
+            <tr><td>About to Sleep</td><td>Decreasing engagement; needs attention<br><small>331, 321, 312, 221, 213, 231, 241, 251</small></td></tr>
+            <tr><td>At Risk</td><td>Likely to disengage; require intervention<br><small>255, 254, 245, 244, 253, 252, 243, 242, 235, 234, 225, 224, 153, 152, 145, 143, 142, 135, 134, 133, 125, 124</small></td></tr>
+            <tr><td>Lost Customers</td><td>No recent activity; need reactivation<br><small>111, 112, 121, 131, 141, 151</small></td></tr>
+          </tbody>
+        </table>
+
+        <h4>Campaign Recommendations</h4>
         <table class="data">
           <thead><tr><th>Segment</th><th>Campaign</th><th>Description</th></tr></thead>
           <tbody>
             <tr><td>Champions</td><td>Exclusive Rewards</td><td>Tiered loyalty, early sale access, gifts.</td></tr>
-            <tr><td>Loyal</td><td>Personalized Communication</td><td>Product recommendations on special dates.</td></tr>
-            <tr><td>Potential Loyalist</td><td>Engagement Incentives</td><td>Promotions to encourage repeat purchases.</td></tr>
+            <tr><td>Loyal</td><td>Personalized Communication</td><td>Product recs based on past purchases &amp; special dates.</td></tr>
+            <tr><td>Potential Loyalist</td><td>Engagement Incentives</td><td>Targeted promos to encourage repeat purchases.</td></tr>
             <tr><td>Hibernating</td><td>Re-Engagement</td><td>Email discounts highlighting new offerings.</td></tr>
-            <tr><td>About to Sleep</td><td>Nudge Reminders</td><td>Small offers to revive declining engagement.</td></tr>
+            <tr><td>About to Sleep</td><td>Nudge Reminders</td><td>Reminders and small offers to revive engagement.</td></tr>
             <tr><td>At Risk</td><td>Win-Back Offers</td><td>Limited-time discounts or exclusive deals.</td></tr>
-            <tr><td>Lost</td><td>Recovery Campaign</td><td>Significant discounts or free gifts.</td></tr>
+            <tr><td>Lost Customers</td><td>Recovery Campaign</td><td>Significant discounts or free gifts.</td></tr>
           </tbody>
         </table>
         <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View notebook (nbviewer)</a> <a class="btn btn-ghost-dark" href="projects/RFM.ipynb" target="_blank" rel="noopener">Download .ipynb</a></p>
@@ -352,40 +515,65 @@ ORDER BY month;</code></pre>
         <p><strong>Approach:</strong> Apply design thinking to identify key metrics, pull data from BigQuery, transform in Power Query, model relationships, and build DAX measures.</p>
         <p><strong>Context:</strong> AdventureWorks is a fictitious bicycle manufacturer. The purchasing department must supply enough goods on time at optimal import prices.</p>
 
-        <h3>Design Thinking · 5W1H</h3>
+        <h3>Design Thinking · Step 1 — Empathize</h3>
         <table class="data">
           <tbody>
-            <tr><th>Who</th><td>Purchasing Manager, accountant.</td></tr>
+            <tr><th>Who views this?</th><td>Purchasing Manager, accountant.</td></tr>
             <tr><th>Key stakeholder</th><td>Purchasing Manager.</td></tr>
             <tr><th>Problem</th><td>Enhance vendor oversight, promote data-driven decisions, optimize vendor relationships and costs.</td></tr>
+            <tr><th>In one sentence</th><td>Provide the Purchasing Manager with overview situation and per-vendor performance details.</td></tr>
             <tr><th>When / Where</th><td>Monthly meetings or solo manager reviews.</td></tr>
             <tr><th>Why</th><td>Understand vendor performance and evaluate procurement decisions.</td></tr>
+            <tr><th>How</th><td>Understand the situation to make informed decisions.</td></tr>
           </tbody>
         </table>
 
-        <h3>North Star Metric</h3>
-        <p><strong>% No-error Orders</strong> — an order is error-free when received quantity equals stockable quantity. This maps directly to the team’s goal: keep production supplied without shortfalls or waste.</p>
+        <h4>Stakeholder Empathy Map</h4>
+        <table class="data">
+          <tbody>
+            <tr><th>Pains</th><td>Large amount of data to analyze; difficulty identifying what’s important.</td></tr>
+            <tr><th>Thinking &amp; feeling</th><td>Worry about purchasing department effectiveness; opinions about vendor reliability.</td></tr>
+            <tr><th>Seeing</th><td>Company purchasing overview and per-vendor info for comparison.</td></tr>
+            <tr><th>Saying &amp; doing</th><td>The overview dashboard gives the big picture; vendor detail gives in-depth analysis.</td></tr>
+            <tr><th>Gains</th><td>See overview changes and vendor operating details to make the right choice.</td></tr>
+          </tbody>
+        </table>
 
-        <h3>Ideate · Metric Layers</h3>
-        <p><strong>Layer 0 (totals):</strong> % no-error orders, % received, % rejected, % extra fee.<br/><strong>Layer 1 (breakdowns):</strong> over time, by ship method, by sub-category.</p>
+        <h3>Design Thinking · Step 2 — North Star Metric</h3>
+        <table class="data">
+          <tbody>
+            <tr><th>Value to measure</th><td>Effectiveness of orders.</td></tr>
+            <tr><th>Delivery success</th><td>Orders completed with no errors (received qty = stockable qty).</td></tr>
+            <tr><th>Metric name</th><td><strong>% No-error Orders</strong></td></tr>
+            <tr><th>Why this metric</th><td>Goal is to provide enough goods for the production department.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Design Thinking · Step 3 — Ideate</h3>
+        <table class="data">
+          <thead><tr><th>Layer 0 — Total Metrics</th><th>Layer 1 — Breakdown</th></tr></thead>
+          <tbody>
+            <tr><td>% no-error orders, % received, % rejected, % extra fee</td><td>Over time, by ship method, by sub-category</td></tr>
+          </tbody>
+        </table>
 
         <h3>Data Model</h3>
         <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/018bbf03-71f5-439c-8f31-ad95a0716f28" alt="Power BI data model" loading="lazy" /></div>
 
         <h3>Visual 1 · Vendor Performance Overview</h3>
         <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/69ae5ca4-c2e0-42f1-ab58-f8e1ed54af4b" alt="Vendor overview dashboard" loading="lazy" /></div>
-        <p>Pedals subcategory (2013–2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across 7 vendors. Reliability dipped to 71% in March 2014; costs spiked to 1.57M in July 2014. Vendor 1586 leads at 78.72%; Vendor 1506 at 77.66% but not top for fees.</p>
+        <p>Pedals subcategory (2013–2014): ~76% error-free orders, avg extra fee 8.68%, total cost 13.60M across 7 vendors. Reliability dipped to 71% in March 2014; costs spiked to 1.57M in July 2014. <strong>VendorID 1586</strong> leads at 78.72%; VendorID 1506 ranks second at 77.66% but not among top for low extra fees.</p>
 
         <h3>Visual 2 · Vendor Performance Detail</h3>
         <div class="gallery one-col"><img src="https://github.com/user-attachments/assets/b93e0fe5-e5f6-458b-97a8-5b3db8691e75" alt="Vendor detail dashboard" loading="lazy" /></div>
-        <p>Pedals category extra fee is 9.5% vs 8.68% overall average — limiting competitiveness. <strong>Prioritize Vendor 1586</strong> for future orders; negotiate freight reduction with Vendor 1506.</p>
+        <p>Pedals category extra fee is 9.5% vs 8.68% overall average — limiting competitiveness. <strong>Prioritize VendorID 1586</strong> for future orders; negotiate freight reduction with VendorID 1506 to improve cost efficiency.</p>
 
-        <h3>How to Use</h3>
+        <h3>How to Use the Dashboard</h3>
         <table class="data">
           <thead><tr><th>Action</th><th>Description</th></tr></thead>
           <tbody>
-            <tr><td>Review Summary</td><td>Scan Overview: error-free rate, total cost, extra fees, active vendors.</td></tr>
-            <tr><td>Analyze Trends</td><td>Spot reliability dips or cost spikes in time-series charts.</td></tr>
+            <tr><td>Review Summary</td><td>Overview tab: error-free rate, total cost, extra fees, active vendors — quick view of performance.</td></tr>
+            <tr><td>Analyze Trends</td><td>Spot reliability dips or cost spikes in time-series charts; vendor rankings highlight who needs attention.</td></tr>
             <tr><td>Select Vendor</td><td>Vendor tab: per-vendor metrics, trends, and comparisons.</td></tr>
             <tr><td>Examine Details</td><td>Product-level pricing, fees, taxes, and freight costs.</td></tr>
             <tr><td>Take Action</td><td>Generate reports and renegotiate contracts using insights.</td></tr>
@@ -414,21 +602,56 @@ ORDER BY month;</code></pre>
         <span class="eyebrow">Machine Learning · Python</span>
         <h2>Customer Churn Prediction &amp; Segmentation</h2>
         <p class="lede">Combine RFM segmentation with churn signals to target retention campaigns at the right customers.</p>
-        <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify; scikit-learn for the modeling step.</p>
+        <p><strong>Platform:</strong> Google Colab. <strong>Library:</strong> Pandas, NumPy, Seaborn, Matplotlib, Squarify; scikit-learn for the modeling step. <strong>Technique:</strong> EDA, data transformations, aggregation; logistic regression and gradient boosting for churn prediction.</p>
         <p><strong>Context:</strong> SuperStore wants to retain loyal customers and re-engage those at risk. Marketing needs a per-customer retention priority score, not a broad segment label.</p>
 
-        <h3>Segmentation Foundation (RFM)</h3>
-        <ol>
-          <li>Clean transactions: drop cancelled orders, negative quantities, missing <code>CustomerID</code>.</li>
-          <li>Compute Recency, Frequency, Monetary per customer.</li>
-          <li>Score each dimension 1–5 with <code>pd.qcut</code> quintiles; build a 3-digit RFM score string.</li>
-          <li>Map scores to seven segments via lookup table: Champions, Loyal, Potential Loyalist, Hibernating, About to Sleep, At Risk, Lost.</li>
-        </ol>
+        <h3>1 · Data Cleaning</h3>
+        <pre><code># Import
+import pandas as pd, numpy as np
+import matplotlib.pyplot as plt, seaborn as sns, squarify
 
-        <h3>From Segmentation to Churn Prediction</h3>
-        <p>The planned next step adds a binary label (<em>churned</em> = no purchase in N days) and engineers features: R, F, M values, customer tenure, category mix, and average order gap. A logistic regression baseline is trained first, then gradient boosting for lift. Output: churn probability per customer, combined with segment label to rank retention priority.</p>
+# Drop duplicates &amp; cancelled orders
+order_info = order_info.drop_duplicates()
+order_info = order_info[~order_info['InvoiceNo'].astype(str).str.startswith('C')]
+order_info = order_info[order_info['InvoiceNo'].apply(lambda x: isinstance(x, int))]
 
-        <h3>Visualization (Segmentation)</h3>
+# Keep valid rows
+order_info = order_info[
+    (order_info['Quantity'] &gt; 0) &amp;
+    (order_info['CustomerID'] != '') &amp;
+    (order_info['UnitPrice'] &gt; 0)
+]
+
+# Parse dates
+order_info['Date'] = pd.to_datetime(order_info['InvoiceDate'],
+                                     format='%m/%d/%y %H:%M', errors='coerce').dt.date
+order_info['Date'] = order_info['Date'].astype('datetime64[ns]')
+order_info = order_info.drop(columns=['InvoiceDate'])</code></pre>
+
+        <h3>2 · RFM Segmentation Foundation</h3>
+        <pre><code>order_info['revenue'] = order_info['quantity'] * order_info['price']
+
+customer_rfm = order_info.groupby('customerid').agg(
+    {'date': 'max', 'invoiceid': 'nunique', 'revenue': 'sum'}
+).reset_index()
+
+# Recency = days from 31/12/2011
+customer_rfm['recency'] = (
+    pd.to_datetime('31/12/2011', format='%d/%m/%Y') - customer_rfm['date']
+).dt.days
+
+# Quintile scoring (R inverted)
+customer_rfm['r_rank'] = 6 - (pd.qcut(customer_rfm['recency'].rank(method='first'),  5, labels=False) + 1)
+customer_rfm['f_rank'] = pd.qcut(customer_rfm['frequency'].rank(method='first'), 5, labels=False) + 1
+customer_rfm['m_rank'] = pd.qcut(customer_rfm['monetory'].rank(method='first'),  5, labels=False) + 1
+customer_rfm['score']  = customer_rfm[['r_rank','f_rank','m_rank']].astype(str).agg(''.join, axis=1)
+
+customer_rfm = segmentation.merge(customer_rfm, on='score', how='right')</code></pre>
+
+        <h3>3 · From Segmentation to Churn Prediction</h3>
+        <p>The next step adds a binary churn label (<em>churned</em> = no purchase in N days) and engineers features: R, F, M values, customer tenure, category mix, and average order gap. A logistic regression baseline is trained first, then gradient boosting for lift. Output: churn probability per customer, combined with the segment label to rank retention priority.</p>
+
+        <h3>4 · Visualization</h3>
         <div class="gallery">
           <img src="https://github.com/user-attachments/assets/ffee588b-8aa9-4ad2-871e-528c05393576" alt="Avg recency by segment" loading="lazy" />
           <img src="https://github.com/user-attachments/assets/9f8a65b2-37fd-4356-82be-7946a4d606b7" alt="Avg frequency by segment" loading="lazy" />
@@ -436,8 +659,36 @@ ORDER BY month;</code></pre>
           <img src="https://github.com/user-attachments/assets/be7b6c87-650a-4fde-89a0-93f11a1791a1" alt="% customers treemap" loading="lazy" />
         </div>
 
-        <h3>Why It Matters</h3>
-        <p>About-to-Sleep and At-Risk together represent a sizeable share of the customer base. Knowing <em>who</em> is actually at risk — not just which segment they belong to — lets marketing concentrate budget on customers most likely to respond, rather than spraying discounts across an entire label.</p>
+        <h3>5 · Insights &amp; Recommendations</h3>
+        <p>By end of 2011, SuperStore had a <em>mixed business situation</em>: Champions (19.2%) and Hibernating (15.9%) are the two largest groups — a wide gap between best and most-disengaged customers. The company over-relies on Champions, suggesting friction in converting new buyers to loyal ones.</p>
+
+        <h4>Segment Characteristics</h4>
+        <table class="data">
+          <thead><tr><th>Segment</th><th>Characteristics &amp; RFM Scores</th></tr></thead>
+          <tbody>
+            <tr><td>Champions</td><td>Highly engaged and valuable<br><small>555, 554, 544, 545, 454, 455, 445</small></td></tr>
+            <tr><td>Loyal</td><td>Regularly purchases; strong retention<br><small>543, 444, 435, 355, 354, 345, 344, 335</small></td></tr>
+            <tr><td>Potential Loyalist</td><td>Engaging but not fully committed<br><small>553, 551, 552, 541, 542, 533, 532, 531, 452, 451, 442, 441, 431, 453, 433, 432, 423, 353, 352, 351, 342, 341, 333, 323</small></td></tr>
+            <tr><td>Hibernating</td><td>Inactive but may return with effort<br><small>332, 322, 233, 232, 223, 222, 132, 123, 122, 212, 211</small></td></tr>
+            <tr><td>About to Sleep</td><td>Decreasing engagement; needs attention<br><small>331, 321, 312, 221, 213, 231, 241, 251</small></td></tr>
+            <tr><td>At Risk</td><td>Likely to disengage; require intervention<br><small>255, 254, 245, 244, 253, 252, 243, 242, 235, 234, 225, 224, 153, 152, 145, 143, 142, 135, 134, 133, 125, 124</small></td></tr>
+            <tr><td>Lost Customers</td><td>No recent activity; need reactivation<br><small>111, 112, 121, 131, 141, 151</small></td></tr>
+          </tbody>
+        </table>
+
+        <h4>Campaign Recommendations</h4>
+        <table class="data">
+          <thead><tr><th>Segment</th><th>Campaign</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>Champions</td><td>Exclusive Rewards</td><td>Tiered loyalty, early sale access, gifts.</td></tr>
+            <tr><td>Loyal</td><td>Personalized Communication</td><td>Product recs on past purchases &amp; special dates.</td></tr>
+            <tr><td>Potential Loyalist</td><td>Engagement Incentives</td><td>Promos to encourage repeat purchases.</td></tr>
+            <tr><td>Hibernating</td><td>Re-Engagement</td><td>Email discounts &amp; new offerings.</td></tr>
+            <tr><td>About to Sleep</td><td>Nudge Reminders</td><td>Special offers to revive declining engagement.</td></tr>
+            <tr><td>At Risk</td><td>Win-Back Offers</td><td>Limited-time discounts or exclusive deals.</td></tr>
+            <tr><td>Lost Customers</td><td>Recovery Campaign</td><td>Significant discounts or free gifts.</td></tr>
+          </tbody>
+        </table>
         <p class="modal-actions"><a class="btn" href="https://nbviewer.org/github/duongngochongson/store/blob/main/projects/RFM.ipynb" target="_blank" rel="noopener">View segmentation notebook</a></p>
       </div>
     </div>
