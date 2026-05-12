@@ -63,14 +63,9 @@ body {
 }
 .tile.visible { opacity: 1; transform: translateY(0); }
 
-/* PROJECT TILES — square */
-.tile-project {
-  aspect-ratio: 1 / 1;
-  cursor: pointer;
-}
-.tile-project:hover, .tile-project:focus-visible {
-  transform: translateY(-4px); box-shadow: var(--shadow-hover); outline: none;
-}
+/* PROJECT TILES */
+.tile-project { aspect-ratio: 1 / 1; cursor: pointer; }
+.tile-project:hover, .tile-project:focus-visible { transform: translateY(-4px); box-shadow: var(--shadow-hover); outline: none; }
 .tile-project h2 { font-size: clamp(22px, 2.2vw, 30px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; margin: 8px 0 0; }
 .tile-head { margin-bottom: 22px; }
 .tile-tag { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
@@ -87,21 +82,19 @@ body {
 .tile-powerbi{ background: var(--grad-pbi); }
 .tile-ml     { background: var(--grad-ml); }
 
-/* ABOUT — compact, height driven by chips */
-.tile-about { padding: 22px 26px; }
-.tile-about .tile-tag { margin-bottom: 6px; display: block; }
+/* ABOUT — compact, no label */
+.tile-about { padding: 22px 26px; justify-content: center; }
 .tile-about h2 { font-size: 19px; margin: 0 0 12px; letter-spacing: -0.02em; font-weight: 700; }
 .chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips li { background: var(--bg); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--ink); font-weight: 500; }
 
-/* CONTACT — title + buttons on same row */
-.tile-contact { background: var(--grad-contact); padding: 22px 26px; }
-.tile-contact .tile-tag { margin-bottom: 6px; display: block; }
+/* CONTACT — h2 + 3 buttons all evenly spread in one row */
+.tile-contact { background: var(--grad-contact); padding: 22px 26px; justify-content: center; }
 .contact-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: space-evenly;
+  gap: 8px;
 }
 .tile-contact h2 { font-size: 19px; margin: 0; letter-spacing: -0.02em; font-weight: 700; white-space: nowrap; }
 .social-row { display: flex; align-items: center; gap: 8px; }
@@ -160,5 +153,5 @@ table.data th { font-weight: 600; background: var(--bg); }
 @media (max-width: 480px) {
   .tile { padding: 22px; }
   .tile-project h2 { font-size: 22px; }
-  .contact-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .contact-row { flex-wrap: wrap; gap: 14px; }
 }
